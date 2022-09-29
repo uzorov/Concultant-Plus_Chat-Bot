@@ -1,0 +1,129 @@
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent" android:layout_height="wrap_content" >
+
+	<ScrollView android:id="@+id/android_large___2"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent" >
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+
+			<View
+				android:id="@+id/_bg__android_large___2_ek2"
+				android:layout_width="360dp"
+				android:layout_height="800dp"
+				android:background="@drawable/_bg__android_large___2_ek2_shape" />
+
+
+			<View
+				android:id="@+id/rectangle_2"
+				android:layout_width="362dp"
+				android:layout_height="102dp"
+				android:alpha="0.72000002861023"
+				android:background="@drawable/rectangle_2_shape"
+				tools:layout_editor_absoluteX="15dp"
+				tools:layout_editor_absoluteY="315dp" />
+
+			<View
+				android:id="@+id/rectangle_3"
+				android:layout_width="189dp"
+				android:layout_height="43dp"
+				android:alpha="0.52999997138977"
+				android:background="@drawable/rectangle_3_shape"
+				tools:layout_editor_absoluteX="133dp"
+				tools:layout_editor_absoluteY="272dp" />
+
+			<View
+				android:id="@+id/rectangle_13"
+				android:layout_width="180dp"
+				android:layout_height="43dp"
+				android:alpha="0.52999997138977"
+				android:background="@drawable/rectangle_13_shape"
+				tools:layout_editor_absoluteX="174dp"
+				tools:layout_editor_absoluteY="27dp" />
+
+			<View
+				android:id="@+id/rectangle_7"
+				android:layout_width="210dp"
+				android:layout_height="43dp"
+				android:alpha="0.52999997138977"
+				android:background="@drawable/rectangle_7_shape"
+				tools:layout_editor_absoluteX="144dp"
+				tools:layout_editor_absoluteY="52dp" />
+
+			<View
+				android:id="@+id/rectangle_3_ek1"
+				android:layout_width="217dp"
+				android:layout_height="63dp"
+				android:alpha="0.85000002384186"
+				android:background="@drawable/rectangle_3_ek1_shape"
+				tools:layout_editor_absoluteX="144dp"
+				tools:layout_editor_absoluteY="183dp" />
+
+
+			<View
+				android:id="@+id/rectangle_4"
+				android:layout_width="178dp"
+				android:layout_height="43dp"
+				android:alpha="0.85000002384186"
+				android:background="@drawable/rectangle_4_shape"
+				tools:layout_editor_absoluteX="144dp"
+				tools:layout_editor_absoluteY="113dp" />
+
+			<ImageView
+							android:id="@+id/vector"
+							android:layout_width="16.71dp"
+							android:layout_height="12.26dp"
+							android:layout_marginStart="0.64dp"
+							android:layout_marginTop="1.74dp"
+							android:contentDescription="vector"
+							android:src="@drawable/vector" />
+
+
+
+
+
+
+						<ImageView
+							android:id="@+id/vector_ek1"
+							android:layout_width="16.71dp"
+							android:layout_height="12.26dp"
+							android:layout_marginStart="0.64dp"
+							android:layout_marginTop="1.74dp"
+							android:contentDescription="vector_ek1"
+							android:src="@drawable/vector_ek1" />
+
+
+			<View
+				android:id="@+id/rectangle_10"
+				android:layout_width="343dp"
+				android:layout_height="216dp"
+				android:background="@drawable/rectangle_10_shape"
+				tools:layout_editor_absoluteX="26dp"
+				tools:layout_editor_absoluteY="515dp" />
+
+			<ImageView
+				android:id="@+id/______________1"
+				android:layout_width="74.38dp"
+				android:layout_height="70dp"
+				android:contentDescription="______________1"
+				android:src="@drawable/robots_face"
+				tools:layout_editor_absoluteX="17dp"
+				tools:layout_editor_absoluteY="77dp" />
+
+			<View
+				android:id="@+id/ellipse_1_ek1"
+				android:layout_width="15dp"
+				android:layout_height="15dp"
+				android:alpha="0.98000001907349"
+				android:background="@drawable/ellipse_1_ek1_shape"
+				tools:layout_editor_absoluteX="68dp"
+				tools:layout_editor_absoluteY="70dp" />
+
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+	</ScrollView>
+</HorizontalScrollView>

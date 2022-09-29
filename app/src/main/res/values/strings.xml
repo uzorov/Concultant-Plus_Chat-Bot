@@ -1,3 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Chat_Bot_CP</string>
+	<!-- android_large___1 strings -->
+
+	<string name="app_name">Page 1</string>
+	<string name="ek_img_content">ExportKit Image</string>
+	<string name="_________________string"> ?  -!</string>
+	<string name="___string"><</string>
+	<string name="___________string">- +</string>
+	<string name="____________string">...</string>
+	<string name="_15_18_pm_string">15:18 PM</string>
+	<string name="_15_20_pm_string">15:20 PM</string>
+	<string name="________27__________string"> 27 </string>
+	<string name="____________________string">  ?</string>
+	<string name="____________________ek1_string">  ?</string>
+	<string name="________________string">  </string>
+	<string name="________________________string"> : </string>
+	<string name="__________________________________string">    </string>
+	<string name="_6893849523834_string">6893849523834</string>
+	<string name="___________________________string">  </string>
+	<string name="_________________________string">  </string>
+	<string name="______________string"> </string>
+	<string name="_15_20_pm_ek1_string">15:20 PM</string>
 </resources>

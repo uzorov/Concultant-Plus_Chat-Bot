@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+	<!-- android_large___1 colors -->
+
+	<color name="colorPrimary">#008577</color>
+	<color name="colorPrimaryDark">#00574B</color>
+	<color name="colorAccent">#D81B60</color>
+	<color name="purple_200">#FFBB86FC</color>
+	<color name="purple_500">#FF6200EE</color>
+	<color name="purple_700">#FF3700B3</color>
+	<color name="teal_200">#FF03DAC5</color>
+	<color name="teal_700">#FF018786</color>
+	<color name="black">#FF000000</color>
+	<color name="white">#FFFFFFFF</color>
+
+	<color name="_bg__android_large___1_ek2_color">#FFFFFF</color>
+	<color name="ellipse_1_color">#05C947</color>
+	<color name="container_color">#61B4CF</color>
+	<color name="_________________color">#000000</color>
+	<color name="___color">#381AEB</color>
+	<color name="___________color">#1E1E1E</color>
+	<color name="____________________color">#151414</color>
+	<color name="rectangle_3_ek1_color">#9CB4CC</color>
+	<color name="rectangle_10_color">#F0EFF8</color>
+	<color name="ellipse_1_ek1_color">#19B84F</color>
 </resources>
