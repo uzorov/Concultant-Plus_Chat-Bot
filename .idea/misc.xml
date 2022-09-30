@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/drawable-nodpi/container_shape.xml" value="0.1395" />
-        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/android_large___1.xml" value="0.25" />
+        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/android_large___1.xml" value="0.1" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/android_large___2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/fragment_invitation_to_the_chat.xml" value="0.1140625" />
       </map>
     </option>
   </component>
