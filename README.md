@@ -14,6 +14,7 @@
 
 Эскизы экранов показны ниже.  
 
-![image](https://user-images.githubusercontent.com/90005421/193025037-14136fd2-ab3d-457f-b290-9475e2b9e74e.png)  
 
-![image](https://user-images.githubusercontent.com/90005421/193025547-a1cdc9ef-37ef-472e-aabc-1040b2dbf743.png)
+![Android Large - 1](https://user-images.githubusercontent.com/90005421/193241734-98fc5681-314c-48e2-9cd7-2a59272c9a6b.png)  
+
+![Android Large - 2](https://user-images.githubusercontent.com/90005421/193241752-355a095d-fbba-4c6f-bd2b-52908b0240ba.png)
