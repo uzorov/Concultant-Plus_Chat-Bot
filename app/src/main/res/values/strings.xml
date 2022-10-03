@@ -21,6 +21,10 @@
     <string name="_________________________string">  </string>
     <string name="______________string"> </string>
     <string name="_15_20_pm_ek1_string">15:20 PM</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bots_name">Чат-бот</string>
+    <string name="test_msg_str">test message</string>
+    <string name="test_left_details_str">time</string>
+    <string name="test_right_details_str">time</string>
 </resources>

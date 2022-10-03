@@ -2,6 +2,6 @@
 <!-- _bg__android_large___2_ek2 from your XD file. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
 	android:shape="rectangle" >
-	<solid android:color="@color/_bg__android_large___1_ek2_color" />
+	<solid android:color="@color/white" />
 </shape>
 

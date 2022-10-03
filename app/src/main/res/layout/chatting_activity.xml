@@ -1,0 +1,125 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:theme="@style/Theme.AppCompat.NoActionBar">
+
+
+	<View
+		android:id="@+id/_bg__android_large___2_ek2"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/_bg__android_large___2_ek2_shape"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+
+	<View
+		android:id="@+id/rectangle_2"
+		android:layout_width="match_parent"
+		android:layout_height="100dp"
+		android:alpha="0.72000002861023"
+		android:background="@drawable/rectangle_2_shape"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:layout_editor_absoluteX="0dp" />
+
+	<View
+		android:id="@+id/rectangle_10"
+		android:layout_width="367dp"
+		android:layout_height="72dp"
+		android:layout_marginBottom="16dp"
+		android:background="@drawable/rectangle_10_shape"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<ImageView
+		android:id="@+id/______________1"
+		android:layout_width="74.38dp"
+		android:layout_height="70dp"
+		android:layout_marginStart="48dp"
+		android:layout_marginBottom="12dp"
+		android:contentDescription="______________1"
+		android:src="@drawable/robots_face"
+		app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/ellipse_1_ek1"
+		app:layout_constraintVertical_bias="0.0" />
+
+	<View
+		android:id="@+id/ellipse_1_ek1"
+		android:layout_width="13dp"
+		android:layout_height="12dp"
+		android:layout_marginStart="97dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginEnd="12dp"
+		android:alpha="0.98000001907349"
+		android:background="@drawable/ellipse_1_ek1_shape"
+		app:layout_constraintEnd_toEndOf="@+id/______________1"
+		app:layout_constraintStart_toStartOf="@+id/rectangle_2"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/textView2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="36dp"
+		android:text="@string/bots_name"
+		android:textColor="@color/black"
+		android:textSize="20dp"
+		app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
+		app:layout_constraintHorizontal_bias="0.107"
+		app:layout_constraintStart_toEndOf="@+id/______________1"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<ScrollView
+		android:id="@+id/scroll"
+		android:layout_width="394dp"
+		android:layout_height="523dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/messages_recycleview"
+				android:layout_width="match_parent"
+				android:layout_height="365dp"
+				android:orientation="horizontal"
+				tools:layout_editor_absoluteX="6dp"
+				tools:layout_editor_absoluteY="110dp" />
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<View
+					android:layout_width="100dp"
+					android:layout_height="wrap_content" />
+
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/variants_recycleview"
+					android:layout_width="300dp"
+					android:layout_height="124dp"
+					android:orientation="horizontal"
+					tools:layout_editor_absoluteX="104dp"
+					tools:layout_editor_absoluteY="505dp"
+					tools:listitem="@layout/variants_bubble" />
+			</LinearLayout>
+
+
+		</LinearLayout>
+	</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
