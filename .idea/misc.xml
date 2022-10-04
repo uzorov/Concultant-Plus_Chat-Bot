@@ -9,6 +9,7 @@
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/drawable-nodpi/ellipse_1_ek1_shape.xml" value="0.2595" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/drawable-nodpi/ellipse_1_shape.xml" value="0.2595" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/drawable-nodpi/ellipse_2_shape.xml" value="0.2595" />
+        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/drawable-nodpi/rectangle_10_shape.xml" value="0.2285" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/drawable-nodpi/rectangle_2_shape.xml" value="0.1545" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/drawable/roundbutton.xml" value="0.124" />
@@ -18,9 +19,9 @@
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/android_large___2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/chatting_activity.xml" value="0.2" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/complex_book_row.xml" value="0.18984375" />
-        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/fragment_invitation_to_the_chat.xml" value="0.1140625" />
+        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/fragment_invitation_to_the_chat.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/left_chat_bubble_layout.xml" value="0.2" />
-        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/right_chat_bubble_layout.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/right_chat_bubble_layout.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/variants_bubble.xml" value="0.264" />
       </map>
     </option>

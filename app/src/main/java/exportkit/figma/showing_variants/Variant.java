@@ -2,7 +2,7 @@ package exportkit.figma.showing_variants;
 
 import java.util.List;
 
-import exportkit.figma.showing_messages.Answer;
+
 
 public class Variant {
 
@@ -27,7 +27,7 @@ public class Variant {
 
     };
 
-    public String getVariant() {
+    public String getVariantText() {
         return variant;
     }
 }

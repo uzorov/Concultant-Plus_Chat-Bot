@@ -12,14 +12,15 @@
 
 
     <Button
-            android:layout_margin="7dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/variant_bubble_button"
-            android:text="Your Text"
-            android:textColor="@color/black"
-            android:background="@drawable/roundbutton"
-            />
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:id="@+id/variant_bubble_button"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_margin="7dp"
+        android:background="@drawable/roundbutton"
+        android:text="Your Text"
+        android:textColor="@color/black" />
 
 
 </LinearLayout>

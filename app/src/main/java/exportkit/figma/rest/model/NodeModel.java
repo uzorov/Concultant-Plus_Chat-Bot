@@ -15,12 +15,7 @@ import java.util.List;
 
 
 public class NodeModel {
-    public static final int LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE = 0;
-    public static final int RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE = 1;
 
-
-    // the type of view
-    private int viewType;
 
     public String previousQuestion;
 

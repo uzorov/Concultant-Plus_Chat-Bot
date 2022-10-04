@@ -1,5 +1,6 @@
 package exportkit.figma.showing_messages;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
@@ -22,24 +23,42 @@ import exportkit.figma.rest.model.NodeModel;
 public class MessagesAdapter
         extends RecyclerView.Adapter {
 
-    Context context;
+
+    ChattingActivity chattingActivity;
 
     public MessagesAdapter() {
     }
 
-    public MessagesAdapter(Context context) {
-        this.context = context;
+    public MessagesAdapter(ChattingActivity context) {
+        this.chattingActivity = context;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        // get an item from the recycler view and determine whether it should be a 'left bubble' or 'right bubble'
+        MessageAndAnswer messageAndAnswer = chattingActivity.getMessageAndAnswer(position);
+        if (messageAndAnswer == null) {
+            return -1;
+        }
+        switch (messageAndAnswer.getViewType()) {
+            case 0:
+                return MessageAndAnswer.LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE;
+            case 1:
+                return MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE;
+            default:
+                return -1;
+        }
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
-            case NodeModel.LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE: // create left bubble
+            case MessageAndAnswer.LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE: // create left bubble
                 View leftLayoutView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.left_chat_bubble_layout, parent, false);
                 return new LeftChatViewHolder(leftLayoutView);
-            case NodeModel.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE: // create right bubble
+            case MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE: // create right bubble
                 View rightLayoutView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.right_chat_bubble_layout, parent, false);
                 return new RightChatViewHolder(rightLayoutView);
@@ -52,22 +71,23 @@ public class MessagesAdapter
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Answer answer = Answer.SAMPLE_DATA[position];
+        MessageAndAnswer messageAndAnswer = chattingActivity.getMessageAndAnswer(position);
 
-        switch (answer.viewType) {
-            case NodeModel.LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE:
+        switch (messageAndAnswer.getViewType()) {
+            case MessageAndAnswer.LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE:
                 LeftChatViewHolder lcViewHolder = (LeftChatViewHolder) holder;
                 String senderText = "Чат-бот";
-                if (context != null) {
-                    senderText = context.getResources().getString(R.string.bots_name);
+                if (chattingActivity != null) {
+                    senderText = chattingActivity.getResources().getString(R.string.bots_name);
                 }
-                lcViewHolder.setTexts(answer.answer, answer.sendingTime, senderText);
+                lcViewHolder.setTexts(
+                        messageAndAnswer.getReceivedText(),
+                        messageAndAnswer.getSendingTime(),
+                        senderText);
                 break;
-            case NodeModel.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE:
-                //RightChatViewHolder rcViewHolder = (RightChatViewHolder) holder;
-                //rcViewHolder.setTexts(chatBubbleText, detailsText);
-                // only able to delete own messages
-                //rcViewHolder.setTrashIconHandler(recyclerItem.getMsgId());
+            case MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE:
+                RightChatViewHolder rcViewHolder = (RightChatViewHolder) holder;
+                rcViewHolder.setTexts(messageAndAnswer.getReceivedText(), messageAndAnswer.getSendingTime());
                 break;
             default:
                 return;
@@ -77,7 +97,7 @@ public class MessagesAdapter
 
     @Override
     public int getItemCount() {
-        return Answer.SAMPLE_DATA.length;
+        return chattingActivity.getMessagesAndAnswersList().size();
     }
 
 }
