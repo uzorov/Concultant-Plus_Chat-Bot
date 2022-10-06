@@ -2,7 +2,7 @@
 <resources>
     <!-- android_large___1 strings -->
 
-    <string name="app_name">Page 1</string>
+    <string name="app_name">Я самозанятый</string>
     <string name="ek_img_content">ExportKit Image</string>
     <string name="_________________string">l</string>
     <string name="___string">l</string>
@@ -23,7 +23,7 @@
     <string name="_15_20_pm_ek1_string">15:20 PM</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bots_name">Чат-бот</string>
+    <string name="bots_name">Помощник Иван</string>
     <string name="test_msg_str">test message</string>
     <string name="test_left_details_str">time</string>
     <string name="test_right_details_str">time</string>

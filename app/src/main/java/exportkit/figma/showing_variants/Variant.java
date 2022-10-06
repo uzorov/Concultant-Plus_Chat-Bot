@@ -16,12 +16,12 @@ public class Variant {
     }
 
     public static final Variant[] SAMPLE_DATA = {
-            new Variant("Вариант 1fff"),
-            new Variant("Вариант 2gggggg"),
-            new Variant("Вариант 3d"),
-            new Variant("Вариант 4"),
-            new Variant("Вариант 5ddd"),
-            new Variant("Вариант 6fffff"),
+            new Variant("Что ты умеешь?"),
+            new Variant("Могу ли я стать самозанятым?"),
+            new Variant("Про постановку и снятие с учёта"),
+            new Variant("Шаблоны документов для самозанятых"),
+            new Variant("Обратная связь"),
+            new Variant("О нас"),
             new Variant("Вариант 7dddddd"),
             new Variant("Вариант 8"),
 

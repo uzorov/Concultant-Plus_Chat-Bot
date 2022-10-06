@@ -20,7 +20,7 @@
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/chatting_activity.xml" value="0.2" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/complex_book_row.xml" value="0.18984375" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/fragment_invitation_to_the_chat.xml" value="0.16799999999999998" />
-        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/left_chat_bubble_layout.xml" value="0.2" />
+        <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/left_chat_bubble_layout.xml" value="0.264" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/right_chat_bubble_layout.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/uzoro/AndroidStudioProjects/Concultant-Plus_Chat-Bot/app/src/main/res/layout/variants_bubble.xml" value="0.264" />
       </map>
@@ -35,7 +35,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.2" />
+        <option name="scale" value="0.128" />
       </ProjectState>
     </option>
   </component>

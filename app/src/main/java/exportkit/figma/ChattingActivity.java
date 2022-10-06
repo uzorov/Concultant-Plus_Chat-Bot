@@ -78,20 +78,12 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 
 
 		//Ручное заполнение для демонстрации - после удалить
-		addMessageToList(MessageAndAnswer.SAMPLE_DATA[0]);
-		addMessageToList(MessageAndAnswer.SAMPLE_DATA[1]);
-		addMessageToList(MessageAndAnswer.SAMPLE_DATA[2]);
-		addMessageToList(MessageAndAnswer.SAMPLE_DATA[3]);
-		addMessageToList(MessageAndAnswer.SAMPLE_DATA[4]);
-		addMessageToList(MessageAndAnswer.SAMPLE_DATA[5]);
-		addMessageToList(MessageAndAnswer.SAMPLE_DATA[6]);
-		addMessageToList(MessageAndAnswer.SAMPLE_DATA[7]);
-
 		addVariantToList(Variant.SAMPLE_DATA[0]);
 		addVariantToList(Variant.SAMPLE_DATA[1]);
 		addVariantToList(Variant.SAMPLE_DATA[2]);
 		addVariantToList(Variant.SAMPLE_DATA[3]);
 		addVariantToList(Variant.SAMPLE_DATA[4]);
+		addVariantToList(Variant.SAMPLE_DATA[5]);
 
 		variantsRecycleView.addOnItemTouchListener(
 				new RecyclerItemClickListener(
@@ -105,8 +97,10 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 										getVariantObject(position).getVariantText(),
 										time,
 										MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE)
-
 								);
+
+								AddMessageTask addMessageTask = new AddMessageTask(ChattingActivity.this);
+								addMessageTask.execute(getVariantObject(position).getVariantText());
 							}
 
 							@Override
@@ -126,6 +120,11 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 			messagesAndAnswersList.add(messageAndAnswer);
 			messagesAdapter.notifyDataSetChanged();
 			chattingRecycleView.scrollToPosition(messagesAndAnswersList.size() - 1); // scroll to bottom
+		}
+
+		public void clearVariants()
+		{
+			variants.clear();
 		}
 
 		public void addVariantToList(Variant variant) {

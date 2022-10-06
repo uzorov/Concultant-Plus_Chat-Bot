@@ -58,10 +58,10 @@
 
             <TextView
                 android:id="@+id/right_details_textview"
-                android:layout_width="wrap_content"
+                android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginRight="-70dp"
+                android:layout_marginRight="-270dp"
                 android:textColor="@color/black"
                 android:text="@string/test_right_details_str"/>
         </LinearLayout>
