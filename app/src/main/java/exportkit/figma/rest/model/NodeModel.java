@@ -62,4 +62,14 @@ public class NodeModel {
         this.variants = variants;
     }
 
+
+    @Override
+    public String toString() {
+        return "NodeModel{" +
+                ", previousQuestion='" + previousQuestion + '\'' +
+                ", clientsAnswer='" + clientsAnswer + '\'' +
+                ", answer='" + answer + '\'' +
+                ", variants=" + variants +
+                '}';
+    }
 }

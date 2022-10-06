@@ -2,7 +2,6 @@ package exportkit.figma.rest.retrofit;
 
 
 import exportkit.figma.rest.model.NodeModel;
-import exportkit.figma.rest.model.NodeModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -22,5 +21,5 @@ public interface NodeModelAPI {
     @FormUrlEncoded
     @POST("/getNextMessage")
     Call<NodeModel> getNode(@Field("clientsAnswer") String clientsAnswer,
-                            @Field("previousQuestion") String previousQuestion);
+                           @Field("previousQuestion") String previousQuestion);
 }
