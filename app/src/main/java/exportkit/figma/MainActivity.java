@@ -1,6 +1,5 @@
 package exportkit.figma;
 
-<<<<<<< HEAD
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
@@ -9,20 +8,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-=======
->>>>>>> rest
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-<<<<<<< HEAD
 import java.util.concurrent.TimeUnit;
-=======
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
->>>>>>> rest
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,14 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-=======
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment invitFragment = new InvitationToTheChatFragment();
->>>>>>> rest
+
 
         ShowFragmentTask showFragmentTask = new ShowFragmentTask();
         showFragmentTask.execute();
@@ -75,17 +63,12 @@ public class MainActivity extends AppCompatActivity {
             transaction.add(R.id.fragment_container_view, invitFragment, null);
 
 // Commit the transaction
-<<<<<<< HEAD
+
             transaction.commit();
 
         }
     }
 }
 
-=======
-                transaction.commit();
-            }
-        });
-    }
-}
->>>>>>> rest
+
+
