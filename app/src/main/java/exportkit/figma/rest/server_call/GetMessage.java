@@ -2,6 +2,8 @@ package exportkit.figma.rest.server_call;
 
 import android.util.Log;
 
+import exportkit.figma.ChattingActivity;
+import exportkit.figma.assync_tasks.AddMessageTask;
 import exportkit.figma.rest.model.NodeModel;
 import exportkit.figma.rest.retrofit.NodeModelAPI;
 import exportkit.figma.rest.retrofit.RetrofitService;
@@ -19,9 +21,7 @@ import retrofit2.Response;
  */
 public class GetMessage {
 
-    public static NodeModel getMessage(String clientsAnswer, String previousQuestion) {
-        final NodeModel[] nodeModelToReturn = new NodeModel[1];
-        nodeModelToReturn[0] = new NodeModel();
+    public static NodeModel getMessage(String clientsAnswer, String previousQuestion, ChattingActivity chattingActivity) {
 
         RetrofitService retrofitService = new RetrofitService();
         Call<NodeModel> call = retrofitService
@@ -34,7 +34,7 @@ public class GetMessage {
             public void onResponse(Call<NodeModel> call, Response<NodeModel> response) {
                 if (response.isSuccessful()) {
                     NodeModel nodeModel = response.body();
-                    nodeModelToReturn[0] = nodeModel;
+                    new AddMessageTask(chattingActivity, nodeModel).execute();
                     Log.d("[INFO]:", nodeModel.toString());
                 } else {
                     Log.d("[Error]:", "Ошибка ответа сервера");
@@ -46,14 +46,14 @@ public class GetMessage {
                 Log.d("[Error]:", "Ошибка обращения к серверу");
             }
         });
-        return nodeModelToReturn[0];
+        return new NodeModel();
     }
 
 
-    public static NodeModel getMessage() {
-        final NodeModel[] nodeModelToReturn = new NodeModel[1];
+    public static NodeModel getMessage(ChattingActivity chattingActivity) {
+        NodeModel[] nodeModelToReturn = new NodeModel[1];
         nodeModelToReturn[0] = new NodeModel();
-
+        NodeModel[] nodeModel = new NodeModel[1];
         RetrofitService retrofitService = new RetrofitService();
         Call<NodeModel> call = retrofitService
                 .getRetrofit()
@@ -64,9 +64,10 @@ public class GetMessage {
             @Override
             public void onResponse(Call<NodeModel> call, Response<NodeModel> response) {
                 if (response.isSuccessful()) {
-                    NodeModel nodeModel = response.body();
-                    nodeModelToReturn[0] = nodeModel;
-                    Log.d("[INFO]:", nodeModel.toString());
+                    nodeModel[0] = response.body();
+                    AddMessageTask addMessageTask = new AddMessageTask(chattingActivity, nodeModel[0]);
+                    addMessageTask.execute();
+
                 } else {
                     Log.d("[Error]:", "Ошибка ответа сервера");
                 }
@@ -77,6 +78,8 @@ public class GetMessage {
                 Log.d("[Error]:", "Ошибка обращения к серверу");
             }
         });
+        Log.d("testing:", nodeModelToReturn[0].toString());
+       // Log.d("testing:", nodeModel[0].toString());
         return nodeModelToReturn[0];
     }
 

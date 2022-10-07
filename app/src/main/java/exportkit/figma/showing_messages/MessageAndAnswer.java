@@ -57,7 +57,11 @@ public class MessageAndAnswer {
     }
 
 
+    public void setReceivedText(String receivedText) {
+        this.receivedText = receivedText;
+    }
 
-
-
+    public void setSendingTime(String sendingTime) {
+        this.sendingTime = sendingTime;
+    }
 }

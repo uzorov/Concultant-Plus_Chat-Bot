@@ -27,6 +27,7 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
+            android:layout_marginLeft="5dp"
             android:id="@+id/left_recycler_cardview"
             android:layout_width="100dp"
             android:layout_height="wrap_content"

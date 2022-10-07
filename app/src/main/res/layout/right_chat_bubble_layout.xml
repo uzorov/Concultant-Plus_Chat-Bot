@@ -17,6 +17,7 @@
             android:layout_weight="1"/>
 
         <androidx.cardview.widget.CardView
+            android:layout_marginRight="5dp"
             android:id="@+id/right_recycler_cardview"
             android:layout_width="100dp"
             android:layout_height="wrap_content"

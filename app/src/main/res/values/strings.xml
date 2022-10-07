@@ -27,4 +27,8 @@
     <string name="test_msg_str">test message</string>
     <string name="test_left_details_str">time</string>
     <string name="test_right_details_str">time</string>
+    <string name="invit_bots_text">Приветствую!
+\n \n
+Меня зовут бот Иван, я помогу разобраться с законодательным регулированием статуса самозанятого, расскажу о налоговых особенностях и предоставлю договоры, которые можно использовать самозанятому.
+</string>
 </resources>

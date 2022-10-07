@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:theme="@style/Theme.AppCompat.NoActionBar">
+    android:theme="@style/Theme.Design.NoActionBar">
 
 
     <View
@@ -92,10 +92,12 @@
     <LinearLayout
         android:id="@+id/bottom_variants"
         android:layout_width="0dp"
-        android:layout_height="82dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:background="@drawable/rectangle_10_shape"
         android:padding="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,10 +107,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/variants_recycleview"
-            android:layout_width="match_parent"
-            android:layout_height="92dp"
-            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="10dp"
+            android:layout_gravity="center_horizontal"
             app:barrierDirection="top"
             app:constraint_referenced_ids="messages_recycleview"
             tools:listitem="@layout/variants_bubble" />

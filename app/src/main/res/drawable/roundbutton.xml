@@ -4,23 +4,23 @@
         <shape android:shape="rectangle"  >
             <corners android:radius="50dp" />
             <stroke android:width="2dip" android:color="#5e7974" />
-            <gradient android:angle="-90" android:startColor="@color/white"
-                android:endColor="@color/white"  />
+            <gradient android:angle="-90" android:startColor="@color/rectangle_10_color"
+                android:endColor="@color/rectangle_10_color"  />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape android:shape="rectangle"  >
             <corners android:radius="50dp" />
             <stroke android:width="2dip" android:color="#5e7974" />
-            <solid android:color="@color/white"/>
+            <solid android:color="@color/rectangle_10_color"/>
         </shape>
     </item>
     <item >
         <shape android:shape="rectangle"  >
             <corners android:radius="50dp" />
             <stroke android:width="3dip" android:color="@color/container_color" />
-            <gradient android:angle="-90" android:startColor="@color/white"
-                android:endColor="@color/white" />
+            <gradient android:angle="-90" android:startColor="@color/rectangle_10_color"
+                android:endColor="@color/rectangle_10_color" />
         </shape>
     </item>
 </selector>

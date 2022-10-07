@@ -19,12 +19,9 @@ package exportkit.figma;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 import exportkit.figma.assync_tasks.AddMessageTask;
+import exportkit.figma.rest.server_call.GetMessage;
 import exportkit.figma.showing_messages.MessageAndAnswer;
 import exportkit.figma.showing_messages.MessagesAdapter;
 import exportkit.figma.showing_variants.RecyclerItemClickListener;
@@ -54,6 +52,8 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 		List<Variant> variants = new ArrayList<>();
 		RecyclerView chattingRecycleView;
 
+		String previousQuestion = "";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,8 +68,8 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 		RecyclerView variantsRecycleView = findViewById(R.id.variants_recycleview);
 		variantsRecycleView.setLayoutManager(new GridLayoutManager(
 				this,
-				1,
-				RecyclerView.HORIZONTAL,
+				2,
+				RecyclerView.VERTICAL,
 				false));
 
 		variantsAdapter = new VariantsAdapter(this);
@@ -77,13 +77,9 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 
 
 
-		//Ручное заполнение для демонстрации - после удалить
-		addVariantToList(Variant.SAMPLE_DATA[0]);
-		addVariantToList(Variant.SAMPLE_DATA[1]);
-		addVariantToList(Variant.SAMPLE_DATA[2]);
-		addVariantToList(Variant.SAMPLE_DATA[3]);
-		addVariantToList(Variant.SAMPLE_DATA[4]);
-		addVariantToList(Variant.SAMPLE_DATA[5]);
+		//Вызываем метод, который загрузит все варианты и вопрос: "Что вас интересует?" -
+		// пока неправильно - переделать
+		GetMessage.getMessage(ChattingActivity.this);
 
 		variantsRecycleView.addOnItemTouchListener(
 				new RecyclerItemClickListener(
@@ -92,15 +88,22 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 						new RecyclerItemClickListener.OnItemClickListener() {
 							@Override
 							public void onItemClick(View view, int position) {
+
+								if (!getVariantObject(position).getVariantText().equals("main page")) {
+									GetMessage.getMessage(getVariantObject(position).getVariantText(),
+											previousQuestion,
+											ChattingActivity.this);
+								}
+								else
+								{
+									GetMessage.getMessage(ChattingActivity.this);
+								}
 								String time = java.text.DateFormat.getTimeInstance().format(new Date());
 								addMessageToList(new MessageAndAnswer(
 										getVariantObject(position).getVariantText(),
 										time,
 										MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE)
 								);
-
-								AddMessageTask addMessageTask = new AddMessageTask(ChattingActivity.this);
-								addMessageTask.execute(getVariantObject(position).getVariantText());
 							}
 
 							@Override
@@ -118,6 +121,9 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 
 		public void addMessageToList(MessageAndAnswer messageAndAnswer) {
 			messagesAndAnswersList.add(messageAndAnswer);
+			if (messageAndAnswer.getViewType() == MessageAndAnswer.LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE) {
+				previousQuestion = messageAndAnswer.getReceivedText();
+			}
 			messagesAdapter.notifyDataSetChanged();
 			chattingRecycleView.scrollToPosition(messagesAndAnswersList.size() - 1); // scroll to bottom
 		}
@@ -140,9 +146,9 @@ import exportkit.figma.showing_variants.VariantsAdapter;
 			return variants.get(position);
 		}
 
-		public void sendMessage(View v) {
-			new AddMessageTask(this).execute();
-		}
+		//public void sendMessage(View v) {
+			//new AddMessageTask(this, nodeModel[0]).execute();
+		//}
 	}
 	
 	
