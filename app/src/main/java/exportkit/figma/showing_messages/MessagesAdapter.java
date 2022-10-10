@@ -1,24 +1,17 @@
 package exportkit.figma.showing_messages;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Node;
-
 import exportkit.figma.ChattingActivity;
 import exportkit.figma.R;
-import exportkit.figma.rest.model.NodeModel;
 
 public class MessagesAdapter
         extends RecyclerView.Adapter {
@@ -38,14 +31,18 @@ public class MessagesAdapter
         // get an item from the recycler view and determine whether it should be a 'left bubble' or 'right bubble'
         MessageAndAnswer messageAndAnswer = chattingActivity.getMessageAndAnswer(position);
         if (messageAndAnswer == null) {
+            Log.d("adapter_debug", "message and answer is NULL!");
             return -1;
         }
         switch (messageAndAnswer.getViewType()) {
             case 0:
+                Log.d("adapter_debug", "message and answer is type 0!");
                 return MessageAndAnswer.LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE;
             case 1:
+                Log.d("adapter_debug", "message and answer is type 1!");
                 return MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE;
             default:
+                Log.d("adapter_debug", "message and answer is default type -1!");
                 return -1;
         }
     }
@@ -63,6 +60,7 @@ public class MessagesAdapter
                         .inflate(R.layout.right_chat_bubble_layout, parent, false);
                 return new RightChatViewHolder(rightLayoutView);
             default:
+                Log.d("adapter_debug", "onCreate returning NULL!");
                 return null;
         }
 
@@ -80,14 +78,19 @@ public class MessagesAdapter
                 if (chattingActivity != null) {
                     senderText = chattingActivity.getResources().getString(R.string.bots_name);
                 }
+
+                Log.d("adapter_debug", "setting text for left bubble");
                 lcViewHolder.setTexts(
+
                         messageAndAnswer.getReceivedText(),
                         messageAndAnswer.getSendingTime(),
                         senderText);
                 break;
             case MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE:
                 RightChatViewHolder rcViewHolder = (RightChatViewHolder) holder;
-                rcViewHolder.setTexts(messageAndAnswer.getReceivedText(), messageAndAnswer.getSendingTime());
+                Log.d("adapter_debug", "setting text for right bubble");
+                rcViewHolder.setTexts(messageAndAnswer.getReceivedText(),
+                        messageAndAnswer.getSendingTime());
                 break;
             default:
                 return;
@@ -97,6 +100,8 @@ public class MessagesAdapter
 
     @Override
     public int getItemCount() {
+        Log.d("adapter_debug", "count of items returned: " +
+                chattingActivity.getMessagesAndAnswersList().size());
         return chattingActivity.getMessagesAndAnswersList().size();
     }
 

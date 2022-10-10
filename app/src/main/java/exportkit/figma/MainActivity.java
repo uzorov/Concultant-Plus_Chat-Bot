@@ -2,25 +2,17 @@ package exportkit.figma;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import java.util.concurrent.TimeUnit;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import exportkit.figma.rest.model.NodeModel;
-import exportkit.figma.rest.server_call.GetMessage;
+import exportkit.figma.fragments.InvitationToTheChatFragment;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
         showFragmentTask.execute();
 
 
+
+
+
+        //new InitDatabase().addData();
     }
 
 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "858928957733",
+    "firebase_url": "https://consluntant-plus-chat-bot-default-rtdb.firebaseio.com",
+    "project_id": "consluntant-plus-chat-bot",
+    "storage_bucket": "consluntant-plus-chat-bot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858928957733:android:62e4bf8290a2facb58b2cc",
+        "android_client_info": {
+          "package_name": "mirea.it.chat_bot_cp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858928957733-osq64lsiu7a4nvdes9rf93qapn6u7uuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBflNHGLR3m6gACVRC-OE1VoZbZArL9jLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858928957733-osq64lsiu7a4nvdes9rf93qapn6u7uuv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

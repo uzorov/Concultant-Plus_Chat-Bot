@@ -1,4 +1,4 @@
-package exportkit.figma;
+package exportkit.figma.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.util.Objects;
+import exportkit.figma.ChattingActivity;
+import exportkit.figma.R;
 
 /**
  * A simple {@link Fragment} subclass.

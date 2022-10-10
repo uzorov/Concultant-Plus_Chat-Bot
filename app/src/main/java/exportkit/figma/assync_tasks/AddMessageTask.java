@@ -8,14 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 import exportkit.figma.ChattingActivity;
-import exportkit.figma.rest.model.NodeModel;
+import exportkit.figma.database.NodeModel;
 import exportkit.figma.showing_messages.MessageAndAnswer;
 import exportkit.figma.showing_variants.Variant;
 
 public final class AddMessageTask extends AsyncTask<String, Integer, Boolean> {
 
     private final ChattingActivity chattingActivity;
-    MessageAndAnswer messageAndAnswer = new MessageAndAnswer();
+    List<MessageAndAnswer> messageAndAnswer = new ArrayList<>();
     List<Variant> variants = new ArrayList<>();
     NodeModel nodeModel = new NodeModel();
 
@@ -26,17 +26,19 @@ public final class AddMessageTask extends AsyncTask<String, Integer, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... strings) {
-        String time = java.text.DateFormat.getTimeInstance().format(new Date());
 
-        messageAndAnswer.setReceivedText(nodeModel.answer);
+
+        for (String answer : nodeModel.answer) {
+            String time = java.text.DateFormat.getTimeInstance().format(new Date());
+           messageAndAnswer.add(new MessageAndAnswer(answer, time, MessageAndAnswer.LEFT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE));
+
+        }
 
         for (String variant : nodeModel.variants)
         {
             variants.add(new Variant(variant));
         }
 
-        messageAndAnswer.setSendingTime(time);
-        //Здесь нужно получить данные с сервера
         return true;
     }
 
@@ -44,8 +46,8 @@ public final class AddMessageTask extends AsyncTask<String, Integer, Boolean> {
     protected void onPostExecute(Boolean success) {
         Log.d("addMessage", "enter postExecute");
         // create message from user input data and add to recycler view in MessageActivity
-        chattingActivity.addMessageToList(messageAndAnswer);
-
+        for (MessageAndAnswer messgeAndAns : messageAndAnswer)
+        chattingActivity.addMessageToList(messgeAndAns);
         if (!variants.isEmpty()) new AddVariantsTask(chattingActivity, variants).execute();
 
     }

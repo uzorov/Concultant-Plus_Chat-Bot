@@ -1,4 +1,4 @@
-package exportkit.figma.rest.model;
+package exportkit.figma.database;
 
 
 
@@ -21,9 +21,16 @@ public class NodeModel {
 
     public String clientsAnswer;
 
-    public String answer;
+    public List<String> answer;
 
     public List<String> variants;
+
+    public NodeModel(String previousQuestion, String clientsAnswer, List<String> answer, List<String> variants) {
+        this.previousQuestion = previousQuestion;
+        this.clientsAnswer = clientsAnswer;
+        this.answer = answer;
+        this.variants = variants;
+    }
 
     public NodeModel() {}
 
@@ -34,7 +41,7 @@ public class NodeModel {
         return variants;
     }
 
-    public String getAnswer() {
+    public List<String> getAnswer() {
         return answer;
     }
 
@@ -46,7 +53,7 @@ public class NodeModel {
         return previousQuestion;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(List<String> answer) {
         this.answer = answer;
     }
 
