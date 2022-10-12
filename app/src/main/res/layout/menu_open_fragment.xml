@@ -6,31 +6,40 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_variants"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rectangle_10_shape"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="9dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="1dp"
+
+        app:layout_constraintEnd_toStartOf="@+id/variants_recycleview"
+        app:layout_constraintStart_toStartOf="@+id/variants_recycleview">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/variants_recycleview"
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_default="wrap"
+
+            app:layout_constraintHeight_max="300dp"
+
             android:layout_gravity="left"
+            android:background="@drawable/rectangle_10_shape"
+            android:layout_marginBottom="9dp"
             android:orientation="vertical"
             android:padding="10dp"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="messages_recycleview"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/variants_bubble" />
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -97,6 +97,7 @@
             return closedMenuFragment;
         }
 
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -114,11 +115,6 @@
             fragmentTransaction.add(R.id.fragment_container_view_variants, openMenuFragment, null);
             fragmentTransaction.commit();
 
-            FragmentTransaction fragmentTransaction2;
-            fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction2.setReorderingAllowed(true);
-            fragmentTransaction2.add(R.id.fragment_container_view_variants, closedMenuFragment, null);
-            fragmentTransaction2.commit();
 
 
             //Ставим слушатель на LinearLayout
@@ -230,6 +226,10 @@
 
         public Variant getVariantObject(int position) {
             return variants.get(position);
+        }
+
+        public void scrollDown() {
+            chattingRecycleView.scrollToPosition(messagesAndAnswersList.size() - 1);
         }
 
         //public void sendMessage(View v) {

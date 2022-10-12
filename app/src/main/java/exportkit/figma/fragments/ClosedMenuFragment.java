@@ -55,6 +55,8 @@ public class ClosedMenuFragment extends Fragment {
                 fragmentTransaction2.setReorderingAllowed(true);
                 fragmentTransaction2.replace(R.id.fragment_container_view_variants, chattingActivity.getOpenMenuFragment(), null);
                 fragmentTransaction2.commit();
+
+                chattingActivity.scrollDown();
             }
         });
         // Inflate the layout for this fragment

@@ -11,7 +11,7 @@
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="65dp"
     android:id="@+id/closed_menu"
     android:layout_marginBottom="8dp"
     android:layout_marginLeft="5dp"
@@ -26,7 +26,7 @@
         android:padding="5dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:text="Нажмите, чтобы открыть меню"
+        android:text="     Нажмите, чтобы открыть меню     "
         android:textSize="20sp"/>
 
 

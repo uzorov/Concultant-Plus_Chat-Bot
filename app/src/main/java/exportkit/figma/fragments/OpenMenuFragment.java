@@ -63,8 +63,9 @@ public class OpenMenuFragment extends Fragment {
         ;
 
 
-
         RecyclerView variantsRecycleView = (RecyclerView) rootView.findViewById(R.id.variants_recycleview);
+
+
         variantsRecycleView.setLayoutManager(new LinearLayoutManager(
                 getActivity(),
                 RecyclerView.VERTICAL,
