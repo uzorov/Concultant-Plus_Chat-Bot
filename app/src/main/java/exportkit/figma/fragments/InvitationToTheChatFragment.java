@@ -22,13 +22,7 @@ import exportkit.figma.R;
  */
 public class InvitationToTheChatFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public InvitationToTheChatFragment() {
         // Required empty public constructor

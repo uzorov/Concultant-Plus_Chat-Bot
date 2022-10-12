@@ -2,7 +2,7 @@
 <resources>
 	<!-- android_large___1 styles -->
 
-	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
@@ -12,6 +12,11 @@
 		<item name="colorOnPrimary">@android:color/holo_red_light</item>
 		<item name="colorPrimary">@android:color/holo_orange_dark</item>
 		<item name="colorOnSurface">@android:color/holo_orange_light</item>
+	</style>
+
+	<style name="NoActionBar" parent="@android:style/Theme.Holo.Light">
+		<item name="android:windowActionBar">false</item>
+		<item name="android:windowNoTitle">true</item>
 	</style>
 
 </resources>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:theme="@style/Theme.Design.NoActionBar">
+    android:theme="@style/NoActionBar">
 
 
     <View
@@ -11,12 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/_bg__android_large___2_ek2_shape"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <View
         android:id="@+id/rectangle_2"
@@ -31,53 +27,58 @@
 
     <ImageView
         android:id="@+id/______________1"
-        android:layout_width="74.38dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="84dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="______________1"
         android:src="@drawable/robots_face"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ellipse_1_ek1"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <View
         android:id="@+id/ellipse_1_ek1"
         android:layout_width="13dp"
         android:layout_height="12dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="8dp"
         android:alpha="0.98000001907349"
         android:background="@drawable/ellipse_1_ek1_shape"
+        app:layout_constraintBottom_toBottomOf="@+id/______________1"
         app:layout_constraintEnd_toEndOf="@+id/______________1"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="@+id/______________1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
         android:text="@string/bots_name"
         android:textColor="@color/black"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toEndOf="@+id/______________1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/_bg__android_large___2_ek2" />
+
 
     <LinearLayout
         android:id="@+id/top_messages"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:constraint_referenced_ids="bottom_variants, rectangle_2"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_variants"
+
+
+        app:constraint_referenced_ids="bottom_variants_menu, rectangle_2"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_variants_menu"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_2">
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_2"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/messages_recycleview"
@@ -87,36 +88,29 @@
             android:layout_marginEnd="1dp"
             app:constraint_referenced_ids="bottom_variants, rectangle_2" />
 
+
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/bottom_variants"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:background="@drawable/rectangle_10_shape"
-        android:padding="9dp"
+        android:id="@+id/bottom_variants_menu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_gravity="bottom">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/variants_recycleview"
-            android:layout_width="wrap_content"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view_variants"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_horizontal"
-            app:barrierDirection="top"
-            app:constraint_referenced_ids="messages_recycleview"
-            tools:listitem="@layout/variants_bubble" />
-    </LinearLayout>
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="0dp" />
 
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

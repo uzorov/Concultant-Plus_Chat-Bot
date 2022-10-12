@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import java.util.concurrent.TimeUnit;
 
+import exportkit.figma.database.InitDatabase;
 import exportkit.figma.fragments.InvitationToTheChatFragment;
 
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         ShowFragmentTask showFragmentTask = new ShowFragmentTask();
         showFragmentTask.execute();
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //new InitDatabase().addData();
+       // new InitDatabase().addData();
     }
 
 
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -17,12 +17,22 @@
 
     package exportkit.figma;
 
+    import static com.google.android.material.internal.ContextUtils.getActivity;
+
     import android.app.Activity;
     import android.os.Bundle;
     import android.util.Log;
     import android.view.View;
+    import android.view.ViewGroup;
+    import android.view.WindowManager;
+    import android.widget.LinearLayout;
 
-
+    import androidx.appcompat.app.AppCompatActivity;
+    import androidx.fragment.app.Fragment;
+    import androidx.fragment.app.FragmentActivity;
+    import androidx.fragment.app.FragmentManager;
+    import androidx.fragment.app.FragmentTransaction;
+    import androidx.recyclerview.widget.DefaultItemAnimator;
     import androidx.recyclerview.widget.GridLayoutManager;
     import androidx.recyclerview.widget.LinearLayoutManager;
     import androidx.recyclerview.widget.RecyclerView;
@@ -32,19 +42,38 @@
     import java.util.List;
 
     import exportkit.figma.database.InitDatabase;
+    import exportkit.figma.fragments.ClosedMenuFragment;
+    import exportkit.figma.fragments.OpenMenuFragment;
     import exportkit.figma.showing_messages.MessageAndAnswer;
     import exportkit.figma.showing_messages.MessagesAdapter;
     import exportkit.figma.showing_variants.RecyclerItemClickListener;
     import exportkit.figma.showing_variants.Variant;
     import exportkit.figma.showing_variants.VariantsAdapter;
 
-    public class ChattingActivity extends Activity {
+    public class ChattingActivity extends AppCompatActivity {
 
 
+        //Пути хранения информации разделов
         static public final String MENU_PATH = "menu";
         static public final String TEST_PATH = "test";
+        static public final String REGISTRATION_PATH = "registration_questions";
+        static public final String WHO_IS_SELF_EMPLOYED_PATH = "who_is_self_employed_questions";
+        static public final String TAX_REGULATION_PATH = "task_regulation_questions";
+        static public final String TEMPLATES_PATH = "templates";
+        static public final String ABOUT_PATH = "about";
 
-        VariantsAdapter variantsAdapter;
+        //Константы для определения, нужно ли уменьшить чат или увеличить
+        static public final int GROW_CHATT = 1;
+        static public final int CUT_CHATT = 0;
+
+        //Фрагменты, представляющие меню с вариантами в открытом и закрытом состояниях
+        OpenMenuFragment openMenuFragment;
+        ClosedMenuFragment closedMenuFragment;
+
+
+
+
+
         MessagesAdapter messagesAdapter;
 
         InitDatabase initDatabase;
@@ -57,29 +86,110 @@
         List<Variant> variants = new ArrayList<>();
         RecyclerView chattingRecycleView;
 
-        String previousQuestion = "";
-        String currentPath = MENU_PATH;
+        public String previousQuestion = "";
+        public String currentPath = MENU_PATH;
+
+        public OpenMenuFragment getOpenMenuFragment() {
+            return openMenuFragment;
+        }
+
+        public ClosedMenuFragment getClosedMenuFragment() {
+            return closedMenuFragment;
+        }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.chatting_activity);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            openMenuFragment = new OpenMenuFragment(ChattingActivity.this);
+            closedMenuFragment = new ClosedMenuFragment(ChattingActivity.this);
+            //Отображаем фрагмент с вариантами
+
+            FragmentTransaction fragmentTransaction;
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.setReorderingAllowed(true);
+            fragmentTransaction.add(R.id.fragment_container_view_variants, openMenuFragment, null);
+            fragmentTransaction.commit();
+
+            FragmentTransaction fragmentTransaction2;
+            fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction2.setReorderingAllowed(true);
+            fragmentTransaction2.add(R.id.fragment_container_view_variants, closedMenuFragment, null);
+            fragmentTransaction2.commit();
+
+
+            //Ставим слушатель на LinearLayout
+
+            LinearLayout linearLayout = findViewById(R.id.top_messages);
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FragmentTransaction fragmentTransaction2;
+                    fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction2.setReorderingAllowed(true);
+                    fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
+                    fragmentTransaction2.commit();
+                }
+            });
+
 
             chattingRecycleView = findViewById(R.id.messages_recycleview);
+            chattingRecycleView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FragmentTransaction fragmentTransaction2;
+                    fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction2.setReorderingAllowed(true);
+                    fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
+                    fragmentTransaction2.commit();
+                }
+            });
+
+
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+
             chattingRecycleView.setLayoutManager(linearLayoutManager);
+
             messagesAdapter = new MessagesAdapter(this);
             chattingRecycleView.setAdapter(messagesAdapter);
 
-            RecyclerView variantsRecycleView = findViewById(R.id.variants_recycleview);
-            variantsRecycleView.setLayoutManager(new GridLayoutManager(
-                    this,
-                    2,
-                    RecyclerView.VERTICAL,
-                    false));
 
-            variantsAdapter = new VariantsAdapter(this);
-            variantsRecycleView.setAdapter(variantsAdapter);
+            chattingRecycleView.addOnItemTouchListener(
+                    new RecyclerItemClickListener(
+                            this,
+                            chattingRecycleView,
+                            new RecyclerItemClickListener.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position) {
+
+                                    if (findViewById(R.id.closed_menu) == null) {
+                                        FragmentTransaction fragmentTransaction2;
+                                        fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                                        fragmentTransaction2.setReorderingAllowed(true);
+                                        fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
+                                        fragmentTransaction2.commit();
+                                    }
+
+
+                                }
+
+                                @Override
+                                public void onLongItemClick(View view, int position) {
+                                    if (findViewById(R.id.closed_menu) == null) {
+                                        FragmentTransaction fragmentTransaction2;
+                                        fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                                        fragmentTransaction2.setReorderingAllowed(true);
+                                        fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
+                                        fragmentTransaction2.commit();
+                                    }
+
+
+                                }
+                            }));
 
 
             //Вызываем метод, который загрузит все варианты и вопрос: "Что вас интересует?" -
@@ -88,64 +198,8 @@
             initDatabase.readData("", "", MENU_PATH);
 
 
-
-
-            variantsRecycleView.addOnItemTouchListener(
-                    new RecyclerItemClickListener(
-                            this,
-                            variantsRecycleView,
-                            new RecyclerItemClickListener.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(View view, int position) {
-
-                                    if (
-                                            !getVariantObject(position).getVariantText().equals("Вернуться на главный экран")
-                                                    &&
-                                                    !getVariantObject(position).getVariantText().equals("Вернуться на главную страницу")) {
-                                        //Получить следующий узел
-
-                                        if (currentPath.equals(MENU_PATH))
-                                            setCurrentPath(getVariantObject(position).getVariantText());
-
-                                        initDatabase.readData(getVariantObject(position).getVariantText(),
-                                                previousQuestion,
-                                                currentPath);
-                                    } else {
-                                        //Вернуться в меню
-                                        currentPath = MENU_PATH;
-                                        initDatabase.readData("",
-                                                "",
-                                                MENU_PATH);
-                                    }
-                                    String answer = getVariantObject(position).getVariantText();
-                                    String time = java.text.DateFormat.getTimeInstance().format(new Date());
-                                    addMessageToList(new MessageAndAnswer(
-                                            answer,
-                                            time,
-                                            MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE)
-                                    );
-                                }
-
-
-                                //Выбрать раздел
-                                private void setCurrentPath(String menuVariant) {
-
-                                    switch (menuVariant) {
-                                        case "Пройти тест на самозанятость":
-                                            Log.d("dataTest", "Path are changed to TEST");
-                                            currentPath = TEST_PATH;
-                                            break;
-                                    }
-
-                                }
-
-                                @Override
-                                public void onLongItemClick(View view, int position) {
-
-                                }
-                            })
-            );
         }
+
 
         public MessageAndAnswer getMessageAndAnswer(int position) {
             return messagesAndAnswersList.get(position);
@@ -166,7 +220,8 @@
 
         public void addVariantToList(Variant variant) {
             variants.add(variant);
-            variantsAdapter.notifyDataSetChanged();
+            openMenuFragment.notifyRecycler();
+
         }
 
         public List<Variant> getVariants() {
