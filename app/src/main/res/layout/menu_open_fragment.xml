@@ -22,6 +22,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/variants_recycleview"
 
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintHeight_default="wrap"
@@ -32,7 +33,7 @@
             android:background="@drawable/rectangle_10_shape"
             android:layout_marginBottom="9dp"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="12dp"
             app:barrierDirection="top"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

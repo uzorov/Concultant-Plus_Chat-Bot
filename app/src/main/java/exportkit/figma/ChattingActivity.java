@@ -20,6 +20,7 @@
     import static com.google.android.material.internal.ContextUtils.getActivity;
 
     import android.app.Activity;
+    import android.os.AsyncTask;
     import android.os.Bundle;
     import android.util.Log;
     import android.view.View;
@@ -37,12 +38,16 @@
     import androidx.recyclerview.widget.LinearLayoutManager;
     import androidx.recyclerview.widget.RecyclerView;
 
+    import java.net.InetAddress;
+    import java.net.UnknownHostException;
     import java.util.ArrayList;
     import java.util.Date;
     import java.util.List;
+    import java.util.concurrent.TimeUnit;
 
     import exportkit.figma.database.InitDatabase;
     import exportkit.figma.fragments.ClosedMenuFragment;
+    import exportkit.figma.fragments.InvitationToTheChatFragment;
     import exportkit.figma.fragments.OpenMenuFragment;
     import exportkit.figma.showing_messages.MessageAndAnswer;
     import exportkit.figma.showing_messages.MessagesAdapter;
@@ -98,6 +103,7 @@
         }
 
 
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -133,18 +139,6 @@
 
 
             chattingRecycleView = findViewById(R.id.messages_recycleview);
-            chattingRecycleView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    FragmentTransaction fragmentTransaction2;
-                    fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction2.setReorderingAllowed(true);
-                    fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
-                    fragmentTransaction2.commit();
-                }
-            });
-
-
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
 
@@ -188,12 +182,44 @@
                             }));
 
 
-            //Вызываем метод, который загрузит все варианты и вопрос: "Что вас интересует?" -
-            // пока неправильно - переделать
-            initDatabase = new InitDatabase(ChattingActivity.this);
-            initDatabase.readData("", "", MENU_PATH);
 
 
+        CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
+        checkInternetConnection.execute();
+        }
+
+        //Проверяем интернет-соединение и инициализируем базу данных
+        public class CheckInternetConnection extends AsyncTask<Void, Void, Void> {
+            InetAddress ipAddr;
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    ipAddr = InetAddress.getByName("google.com");
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+
+                try {
+
+
+                    boolean isInternetAvailable = ipAddr != null;
+
+                    //Вызываем метод, который загрузит все варианты и вопрос: "Что вас интересует?" -
+                    initDatabase = new InitDatabase(ChattingActivity.this, isInternetAvailable);
+                    initDatabase.readData("", "", MENU_PATH);
+
+                } catch (Exception e) {
+
+                    Log.d("internet_checking_debug", "Internet checking error");
+                }
+            }
         }
 
 

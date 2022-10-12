@@ -41,7 +41,7 @@ public class OpenMenuFragment extends Fragment {
 
     public OpenMenuFragment(ChattingActivity chattingActivity) {
         this.chattingActivity = chattingActivity;
-        initDatabase = new InitDatabase(chattingActivity);
+        initDatabase = new InitDatabase(chattingActivity, true);
     }
 
     public static OpenMenuFragment newInstance() {
