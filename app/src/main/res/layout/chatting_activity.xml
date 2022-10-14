@@ -70,6 +70,7 @@
         android:id="@+id/top_messages"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constrainedHeight="true"
 
 
         app:constraint_referenced_ids="bottom_variants_menu, rectangle_2"
@@ -94,15 +95,14 @@
     <LinearLayout
         android:id="@+id/bottom_variants_menu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_gravity="bottom"
-        android:maxHeight="200dp">
+        android:layout_gravity="bottom">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container_view_variants"

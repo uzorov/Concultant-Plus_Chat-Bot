@@ -47,13 +47,25 @@ public class InitDatabase {
     public void addData() {
 
 
+
+
+
         String prevQuestion = "Что Вас интересует?";
-        String clientsAnswer = "Налоговое регулирование";
+        String clientsAnswer = "О нас";
         List<String> answers = new ArrayList<>();
-       answers.add("В данном разделе собраны вопромы по налоговому регулированию для самозанятого");
-       answers.add("");
-       answers.add("Вернуться на главную страницу");
+        answers.add("С 2017 г. был введен статус самозанятого, но этот статус вызывает много вопросов у граждан, желающих заниматься предпринимательской деятельностью.");
+        answers.add("Цель нашего проекта: \n" +
+                "- помочь гражданам разобраться в законодательстве о самозанятых,\n" +
+                "- узнать, какие налоги необходимо платить самозанятому,\n" +
+                "- узнать о + и - статуса самозанятого,\n" +
+                "- получить готовые шаблоны договоров, которые можно использовать самозанятому");
+        answers.add("Напоминаем:\n" +
+                "Наш проект не “панацея” и не может охватить все вопросы граждан, мы освещаем только основные особенности статуса самозанятого.  \n" +
+                "Информация из чат-бота основана на актуальных законах.\n" +
+                "Материалы носят рекомендательный характер, и мы не несем ответственность за действия граждан на основе материала из чат-бота.");
         List<String> variants = new ArrayList<>();
+        variants.add("Вернуться на главную страницу");
+
 
 
         // Create a new user with a first and last name
@@ -65,7 +77,7 @@ public class InitDatabase {
 
 
 // Add a new document with a generated ID
-        db.collection(ChattingActivity.WHO_IS_SELF_EMPLOYED_PATH)
+        db.collection(ChattingActivity.ABOUT_PATH)
                 .add(nodeModel1)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

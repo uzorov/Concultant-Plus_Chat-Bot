@@ -194,6 +194,20 @@ public class OpenMenuFragment extends Fragment {
 
                                 } else if (chattingActivity.getVariantObject(position).getVariantText().equals("Обратная связь")) {
                                     //Вывести информацию об обратной связи - работает в режиме без интернета
+                                    List<String> answerList = new ArrayList<>();
+                                    answerList.add("Связаться со мной можно, написав на почту: chat.bot.pomoshchnik.ivan@bk.ru");
+                                    answerList.add("Вы можете задать вопросы как по технической части бота, включая вопросы о возникающих ошибках" +
+                                            ", так и по информации, присутствующей в боте");
+                                    answerList.add("Также буду рад получить от вас общее мнение о продукте.");
+                                    answerList.add("Спасибо, что общаетесь со мной!");
+
+
+                                    List<String> variantList = new ArrayList<>();
+                                    variantList.add("Вернуться на главную страницу");
+                                    NodeModel nodeModel = new NodeModel("", "", answerList, variantList);
+
+                                    AddMessageTask addMessageTask = new AddMessageTask(chattingActivity, nodeModel);
+                                    addMessageTask.execute();
                                 } else {
                                     //Получить следующий узел
                                     if (chattingActivity.currentPath.equals(MENU_PATH))

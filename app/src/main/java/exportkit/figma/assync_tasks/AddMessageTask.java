@@ -46,9 +46,7 @@ public final class AddMessageTask extends AsyncTask<String, Integer, Boolean> {
 
             }
 
-            for (String variant : nodeModel.variants) {
-                variants.add(new Variant(variant));
-            }
+
 
 
 
@@ -60,13 +58,18 @@ public final class AddMessageTask extends AsyncTask<String, Integer, Boolean> {
         Log.d("addMessage", "enter postExecute");
         // create message from user input data and add to recycler view in MessageActivity
 
+       if (!nodeModel.variants.isEmpty()) chattingActivity.clearVariants();
+        for (String variant : nodeModel.variants) {
+            chattingActivity.addVariantToList(new Variant(variant));
+        }
+
 
             chattingActivity.setPrevLastNodeModel(chattingActivity.getLastNodeModel());
             chattingActivity.setLastNodeModel(nodeModel);
 
         for (MessageAndAnswer messgeAndAns : messageAndAnswer)
             chattingActivity.addMessageToList(messgeAndAns);
-        if (!variants.isEmpty()) new AddVariantsTask(chattingActivity, variants).execute();
+       // if (!variants.isEmpty()) new AddVariantsTask(chattingActivity, variants).execute();
 
     }
 }

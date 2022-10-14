@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
         showFragmentTask.execute();
 
 
-
-      // LoadPdfFile("Договор аренды нежилого помещения");
-
+        //Заполнение базы данных
         //new InitDatabase().addData();
     }
 
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

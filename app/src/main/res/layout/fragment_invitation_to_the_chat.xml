@@ -39,8 +39,8 @@
 
         <View
             android:id="@+id/container"
-            android:layout_width="313dp"
-            android:layout_height="300dp"
+            android:layout_width="314dp"
+            android:layout_height="261dp"
             android:layout_marginBottom="16dp"
             android:alpha="0.60000002384186"
             android:background="@drawable/container_shape"
@@ -52,7 +52,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="288dp"
-            android:layout_height="271dp"
+            android:layout_height="wrap_content"
             android:text="@string/invit_bots_text"
             android:textColor="@color/black"
             android:textSize="20sp"
