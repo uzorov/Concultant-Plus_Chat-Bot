@@ -52,17 +52,16 @@
             android:orientation="horizontal">
 
             <!-- Spacer View needed to align right -->
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
+
 
             <TextView
                 android:id="@+id/right_details_textview"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginRight="-270dp"
+              android:layout_gravity="right"
+                android:gravity="right"
+                android:layout_marginRight="5dp"
                 android:textColor="@color/black"
                 android:text="@string/test_right_details_str"/>
         </LinearLayout>

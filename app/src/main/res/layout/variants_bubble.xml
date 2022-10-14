@@ -9,19 +9,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
+        >
 
 
 
     <Button
         android:padding="5dp"
-        android:textAlignment="center"
         android:id="@+id/variant_bubble_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
+        android:textAllCaps="false"
         android:background="@drawable/roundbutton"
         android:text="Your Text"
+        android:autoLink="web"
         android:textColor="@color/black" />
 
 

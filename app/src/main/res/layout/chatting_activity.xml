@@ -75,7 +75,7 @@
         app:constraint_referenced_ids="bottom_variants_menu, rectangle_2"
         app:layout_constraintBottom_toTopOf="@+id/bottom_variants_menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rectangle_2"
         app:layout_constraintVertical_bias="0.0">
@@ -83,7 +83,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/messages_recycleview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
             app:constraint_referenced_ids="bottom_variants, rectangle_2" />
@@ -107,7 +107,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container_view_variants"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="0dp" />
 

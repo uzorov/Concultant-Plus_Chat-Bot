@@ -13,11 +13,13 @@
 	<color name="black">#FF000000</color>
 	<color name="white">#FFFFFFFF</color>
 
+	<color name="can_be_selected_blue">#28A2FF</color>
+
 	<color name="_bg__android_large___1_ek2_color">#9CB4CC</color>
 	<color name="ellipse_1_color">#05C947</color>
 	<color name="container_color">#61B4CF</color>
 	<color name="_________________color">#000000</color>
-	<color name="___color">#381AEB</color>
+	<color name="item_was_select">#E1102F</color>
 	<color name="___________color">#1E1E1E</color>
 	<color name="____________________color">#151414</color>
 	<color name="rectangle_3_ek1_color">#9CB4CC</color>

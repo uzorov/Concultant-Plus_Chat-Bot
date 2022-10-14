@@ -2,6 +2,8 @@ package exportkit.figma.database;
 
 
 
+import android.graphics.drawable.Drawable;
+
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ import java.util.List;
 public class NodeModel {
 
 
+
     public String previousQuestion;
 
     public String clientsAnswer;
@@ -25,13 +28,27 @@ public class NodeModel {
 
     public List<String> variants;
 
+    private boolean isFileImageExist;
+
+    public boolean thisNodeIsDocument()
+    {
+        return isFileImageExist;
+    }
     public NodeModel(String previousQuestion, String clientsAnswer, List<String> answer, List<String> variants) {
         this.previousQuestion = previousQuestion;
         this.clientsAnswer = clientsAnswer;
         this.answer = answer;
         this.variants = variants;
+        this.isFileImageExist = false;
     }
 
+    public NodeModel(String previousQuestion, String clientsAnswer, List<String> answer, List<String> variants, Boolean isFileImageExist) {
+        this.previousQuestion = previousQuestion;
+        this.clientsAnswer = clientsAnswer;
+        this.answer = answer;
+        this.variants = variants;
+        this.isFileImageExist = isFileImageExist;
+    }
     public NodeModel() {}
 
 

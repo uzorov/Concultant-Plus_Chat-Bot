@@ -1,17 +1,23 @@
 package exportkit.figma.showing_messages;
 
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Date;
+
 import exportkit.figma.ChattingActivity;
 import exportkit.figma.R;
+import io.grpc.internal.SharedResourceHolder;
 
 public class MessagesAdapter
         extends RecyclerView.Adapter {
@@ -78,13 +84,14 @@ public class MessagesAdapter
                 if (chattingActivity != null) {
                     senderText = chattingActivity.getResources().getString(R.string.bots_name);
                 }
-
                 Log.d("adapter_debug", "setting text for left bubble");
-                lcViewHolder.setTexts(
 
-                        messageAndAnswer.getReceivedText(),
-                        messageAndAnswer.getSendingTime(),
-                        senderText);
+                    lcViewHolder.setTexts(
+                            messageAndAnswer.getReceivedText(),
+                            messageAndAnswer.getSendingTime(),
+                            senderText,
+                            messageAndAnswer.thisNodeIsDocument());
+
                 break;
             case MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE:
                 RightChatViewHolder rcViewHolder = (RightChatViewHolder) holder;
@@ -151,6 +158,7 @@ class LeftChatViewHolder extends RecyclerView.ViewHolder {
     private TextView chatBubbleTextView;
     private TextView detailsTextView;
     private TextView senderTextView;
+    private ImageView fileImageView;
 
     /**
      * Constructor
@@ -164,6 +172,7 @@ class LeftChatViewHolder extends RecyclerView.ViewHolder {
         chatBubbleCardView = itemView.findViewById(R.id.left_recycler_cardview);
         detailsTextView = itemView.findViewById(R.id.left_details_textview);
         senderTextView = itemView.findViewById(R.id.left_sender_textview);
+        fileImageView = itemView.findViewById(R.id.fileImage);
     }
 
     /**
@@ -172,9 +181,21 @@ class LeftChatViewHolder extends RecyclerView.ViewHolder {
      * @param chatText
      * @param detailsText
      */
-    public void setTexts(String chatText, String detailsText, String sender) {
+    public void setTexts(String chatText, String detailsText, String sender, boolean isFileAttached) {
         chatBubbleTextView.setText(chatText);
         detailsTextView.setText(detailsText);
         senderTextView.setText(sender);
+
+        if (isFileAttached) {
+            chatBubbleTextView.setTextColor(itemView.getResources().getColor(R.color.can_be_selected_blue));
+            chatBubbleTextView.setPaintFlags(chatBubbleTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            fileImageView.setBackgroundResource(R.drawable.file_ic);
+        } else {
+            chatBubbleTextView.setTextColor(itemView.getResources().getColor(R.color.black));
+            chatBubbleTextView.setPaintFlags(0);
+            fileImageView.setBackgroundResource(0);
+        }
+        Log.d("thisNodeIsDocument", "Now set texts was working " + chatText);
     }
+
 }

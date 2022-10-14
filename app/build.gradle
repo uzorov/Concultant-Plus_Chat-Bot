@@ -57,5 +57,5 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-firestore'
 
-
+    implementation 'com.commonsware.cwac:provider:0.4.3'
 }

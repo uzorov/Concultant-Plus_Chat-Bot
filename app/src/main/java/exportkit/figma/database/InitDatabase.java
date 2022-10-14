@@ -46,47 +46,26 @@ public class InitDatabase {
 
     public void addData() {
 
+
         String prevQuestion = "Что Вас интересует?";
-        String clientsAnswer = "Постановка и снятие с учёта";
+        String clientsAnswer = "Налоговое регулирование";
         List<String> answers = new ArrayList<>();
-        answers.add("В данном разделе собраны наиболее часто встречающиеся вопросы " +
-                "по теме постановки и снятия с учёта самозанятого.");
-        answers.add("Выберите вопрос из прокручиваемого списка снизу и я на него отвечу.");
-        answers.add("Что Вас интересует?");
-
-
+       answers.add("В данном разделе собраны вопромы по налоговому регулированию для самозанятого");
+       answers.add("");
+       answers.add("Вернуться на главную страницу");
         List<String> variants = new ArrayList<>();
-
-
-        variants.add("");
-        variants.add("");
-        variants.add("");
-        variants.add("");
-
-
-        variants.add("Может ли ИП прекратить свою деятельность и стать самозанятым как физическое лицо?");
-        variants.add("Вернуться на главную страницу");
-
-
-        String prevQuestion1 = "Что Вас интересует?";
-        String clientsAnswer1 = "Может ли ИП прекратить свою деятельность и стать самозанятым как физическое лицо?";
-        List<String> answers1 = new ArrayList<>();
-        answers1.add("Да, может. Для этого необходимо сняться с учета в налоговом органе в качестве ИП и встать на учет в качестве \"самозанятого\". \n");
-        answers1.add("Важно: закон не препятствует применению НПД и в статусе ИП (ч. 1 ст. 2 Закона № 422-ФЗ), поэтому можно не сниматься с учета в качестве ИП. При этом вы должны понимать, что нельзя совмещать налог на профессиональный доход (НПД) с другими специальными налоговыми режимами — УСН, ЕНВД и ЕСХН. \n");
-        answers1.add("Отказаться от спецрежимов нужно успеть в течение месяца с того дня, как ИП зарегистрировался в качестве самозанятого (ч.4 ст.15 Федерального закона №422-ФЗ). Иначе вам откажут в регистрации.");
-        List<String> variants1 = new ArrayList<>();
 
 
         // Create a new user with a first and last name
         Map<String, Object> nodeModel1 = new HashMap<>();
-        nodeModel1.put("prevQuestion", prevQuestion1);
-        nodeModel1.put("clientsAnswer", clientsAnswer1);
-        nodeModel1.put("answers", answers1);
-        nodeModel1.put("variants", variants1);
+        nodeModel1.put("prevQuestion", prevQuestion);
+        nodeModel1.put("clientsAnswer", clientsAnswer);
+        nodeModel1.put("answers", answers);
+        nodeModel1.put("variants", variants);
 
 
 // Add a new document with a generated ID
-        db.collection(ChattingActivity.REGISTRATION_PATH)
+        db.collection(ChattingActivity.WHO_IS_SELF_EMPLOYED_PATH)
                 .add(nodeModel1)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

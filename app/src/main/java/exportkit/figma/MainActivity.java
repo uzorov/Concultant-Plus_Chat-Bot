@@ -1,14 +1,24 @@
 package exportkit.figma;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 import exportkit.figma.database.InitDatabase;
@@ -26,15 +36,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         ShowFragmentTask showFragmentTask = new ShowFragmentTask();
         showFragmentTask.execute();
 
 
 
+      // LoadPdfFile("Договор аренды нежилого помещения");
 
-
-       // new InitDatabase().addData();
+        //new InitDatabase().addData();
     }
+
+
 
 
     public class ShowFragmentTask extends AsyncTask<Void, Void, Void> {

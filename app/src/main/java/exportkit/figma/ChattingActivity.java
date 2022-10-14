@@ -17,43 +17,41 @@
 
     package exportkit.figma;
 
-    import static com.google.android.material.internal.ContextUtils.getActivity;
-
+    import android.Manifest;
     import android.app.Activity;
-    import android.os.AsyncTask;
+    import android.content.Intent;
+    import android.content.pm.PackageManager;
+    import android.content.res.AssetManager;
     import android.os.Bundle;
+    import android.os.Environment;
     import android.util.Log;
     import android.view.View;
-    import android.view.ViewGroup;
     import android.view.WindowManager;
     import android.widget.LinearLayout;
 
     import androidx.appcompat.app.AppCompatActivity;
-    import androidx.fragment.app.Fragment;
-    import androidx.fragment.app.FragmentActivity;
-    import androidx.fragment.app.FragmentManager;
+    import androidx.core.app.ActivityCompat;
+    import androidx.core.content.ContextCompat;
+    import androidx.core.content.FileProvider;
     import androidx.fragment.app.FragmentTransaction;
-    import androidx.recyclerview.widget.DefaultItemAnimator;
-    import androidx.recyclerview.widget.GridLayoutManager;
     import androidx.recyclerview.widget.LinearLayoutManager;
     import androidx.recyclerview.widget.RecyclerView;
 
-    import java.net.InetAddress;
-    import java.net.UnknownHostException;
+    import java.io.File;
+    import java.io.FileOutputStream;
+    import java.io.IOException;
+    import java.io.InputStream;
     import java.util.ArrayList;
-    import java.util.Date;
     import java.util.List;
-    import java.util.concurrent.TimeUnit;
 
     import exportkit.figma.database.InitDatabase;
+    import exportkit.figma.database.NodeModel;
     import exportkit.figma.fragments.ClosedMenuFragment;
-    import exportkit.figma.fragments.InvitationToTheChatFragment;
     import exportkit.figma.fragments.OpenMenuFragment;
     import exportkit.figma.showing_messages.MessageAndAnswer;
     import exportkit.figma.showing_messages.MessagesAdapter;
     import exportkit.figma.showing_variants.RecyclerItemClickListener;
     import exportkit.figma.showing_variants.Variant;
-    import exportkit.figma.showing_variants.VariantsAdapter;
 
     public class ChattingActivity extends AppCompatActivity {
 
@@ -75,9 +73,25 @@
         OpenMenuFragment openMenuFragment;
         ClosedMenuFragment closedMenuFragment;
 
+        public void setPrevLastNodeModel(NodeModel prevLastNodeModel) {
+            this.prevLastNodeModel = prevLastNodeModel;
+        }
 
+        public NodeModel getPrevLastNodeModel() {
+            return prevLastNodeModel;
+        }
 
+        NodeModel prevLastNodeModel = null;
 
+        public NodeModel getLastNodeModel() {
+            return LastNodeModel;
+        }
+
+        public void setLastNodeModel(NodeModel lastNodeModel) {
+            LastNodeModel = lastNodeModel;
+        }
+
+        NodeModel LastNodeModel = null;
 
         MessagesAdapter messagesAdapter;
 
@@ -103,7 +117,6 @@
         }
 
 
-
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -120,7 +133,6 @@
             fragmentTransaction.setReorderingAllowed(true);
             fragmentTransaction.add(R.id.fragment_container_view_variants, openMenuFragment, null);
             fragmentTransaction.commit();
-
 
 
             //Ставим слушатель на LinearLayout
@@ -156,72 +168,69 @@
                                 @Override
                                 public void onItemClick(View view, int position) {
 
-                                    if (findViewById(R.id.closed_menu) == null) {
+                                    if (messagesAndAnswersList.get(position).thisNodeIsDocument()) {
+
+                                        LoadPdfFile(messagesAndAnswersList.get(position).getReceivedText());
+
+                                    } else {
                                         FragmentTransaction fragmentTransaction2;
                                         fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                                         fragmentTransaction2.setReorderingAllowed(true);
                                         fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
                                         fragmentTransaction2.commit();
                                     }
-
 
                                 }
 
                                 @Override
                                 public void onLongItemClick(View view, int position) {
-                                    if (findViewById(R.id.closed_menu) == null) {
-                                        FragmentTransaction fragmentTransaction2;
-                                        fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                                        fragmentTransaction2.setReorderingAllowed(true);
-                                        fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
-                                        fragmentTransaction2.commit();
-                                    }
+
+                                    FragmentTransaction fragmentTransaction2;
+                                    fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction2.setReorderingAllowed(true);
+                                    fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
+                                    fragmentTransaction2.commit();
 
 
                                 }
                             }));
 
 
+//Вызываем метод, который загрузит все варианты и вопрос: "Что вас интересует?" -
+            initDatabase = new InitDatabase(ChattingActivity.this, internetIsConnected());
+            initDatabase.readData("", "", MENU_PATH);
 
-
-        CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
-        checkInternetConnection.execute();
         }
 
-        //Проверяем интернет-соединение и инициализируем базу данных
-        public class CheckInternetConnection extends AsyncTask<Void, Void, Void> {
-            InetAddress ipAddr;
-
-            @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    ipAddr = InetAddress.getByName("google.com");
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-
-                try {
-
-
-                    boolean isInternetAvailable = ipAddr != null;
-
-                    //Вызываем метод, который загрузит все варианты и вопрос: "Что вас интересует?" -
-                    initDatabase = new InitDatabase(ChattingActivity.this, isInternetAvailable);
-                    initDatabase.readData("", "", MENU_PATH);
-
-                } catch (Exception e) {
-
-                    Log.d("internet_checking_debug", "Internet checking error");
-                }
+        //Метод проверяет интернет соединение
+        public boolean internetIsConnected() {
+            try {
+                String command = "ping -c 1 google.com";
+                return (Runtime.getRuntime().exec(command).waitFor() == 0);
+            } catch (Exception e) {
+                return false;
             }
         }
 
+        /* Checks if external storage is available for read and write */
+        public boolean isExternalStorageWritable() {
+            String state = Environment.getExternalStorageState();
+            if (Environment.MEDIA_MOUNTED.equals(state)) {
+                return true;
+            }
+            return false;
+        }
+
+        //Получить директорию для сохранения документов
+        public File getFileStorageDir(String fileName) {
+            File file = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOCUMENTS), fileName);
+
+            if (!file.mkdirs()) {
+                Log.e("saving_files", "Directory not created");
+            }
+            return file;
+        }
 
         public MessageAndAnswer getMessageAndAnswer(int position) {
             return messagesAndAnswersList.get(position);
@@ -258,9 +267,66 @@
             chattingRecycleView.scrollToPosition(messagesAndAnswersList.size() - 1);
         }
 
-        //public void sendMessage(View v) {
-        //new AddMessageTask(this, nodeModel[0]).execute();
-        //}
+
+        private static final String AUTHORITY = "exportkit.figma";
+
+        static public void copy(InputStream in, File dst) throws IOException {
+            FileOutputStream out = new FileOutputStream(dst);
+            byte[] buf = new byte[1024];
+            int len;
+
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+
+            in.close();
+            out.close();
+        }
+
+
+        //Позволяет просмотреть файл с расширением .docx по переданному названию файла
+        //Файлы данного приложения хранятся в папке assets
+        private void LoadPdfFile(String fileName) {
+
+            File f = new File(getFilesDir(), fileName);
+
+            if (!f.exists()) {
+                AssetManager assets = getAssets();
+
+                try {
+                    copy(assets.open(fileName), f);
+                } catch (IOException e) {
+                    Log.e("FileProvider", "Exception copying from assets", e);
+                }
+            }
+
+            Intent i =
+                    new Intent(Intent.ACTION_VIEW,
+                            FileProvider.getUriForFile(this, AUTHORITY, f));
+
+            i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            startActivity(i);
+            //finish();
+
+
+        }
+
+        public File GetDocxFile(File fileDir, String fileName) {
+
+            File f = new File(fileDir, fileName);
+
+            if (!f.exists()) {
+                AssetManager assets = getAssets();
+
+                try {
+                    copy(assets.open(fileName), f);
+                } catch (IOException e) {
+                    Log.e("FileProvider", "Exception copying from assets", e);
+                }
+            }
+
+            return f;
+        }
+
     }
-	
-	
