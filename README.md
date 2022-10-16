@@ -91,7 +91,7 @@
 * getOpenMenuFragment() - геттер объекта OpenMenuFragment.
 * getClosedMenuFragment() - геттер объекта ClosedMenuFragment.
 * getVariants() - метод, возвращающий список вариантов, отображаемых на экране чата.
-getVariantObject(int position) - метод, возвращающий вариант из списка по позиции.
+* getVariantObject(int position) - метод, возвращающий вариант из списка по позиции.
 * internetIsConnected() - метод, проверяющий наличие интернет соединения.
 * isExternalStorageWritable() - метод, проверяющий доступно ли внешнее хранилище устройства для записи, необходим для работы функции сохранения договоров в памяти устройства.
 * getFileStorageDir(String fileName) - метод, создающий директорию в разделе "Документы" устройства, для сохранения документов.
