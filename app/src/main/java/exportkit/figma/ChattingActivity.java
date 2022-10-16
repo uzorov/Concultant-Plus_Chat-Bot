@@ -312,6 +312,20 @@
 
         }
 
+        public static final int REQUEST_WRITE_STORAGE = 112;
+
+        public boolean requestPermission(Activity context) {
+            boolean hasPermission = (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+            if (!hasPermission) {
+                ActivityCompat.requestPermissions(context,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_WRITE_STORAGE);
+                hasPermission = (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+            }
+
+            return hasPermission;
+        }
+
         public File GetDocxFile(File fileDir, String fileName) {
 
             File f = new File(fileDir, fileName);

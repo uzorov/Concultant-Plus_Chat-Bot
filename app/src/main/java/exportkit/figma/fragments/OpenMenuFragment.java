@@ -120,35 +120,31 @@ public class OpenMenuFragment extends Fragment {
 
                                 else if (chattingActivity.getVariantObject(position).getVariantText().equals("Сохранить договор"))
                                 {
-                                    //Сохранить документ во внешнем хранилище
-                                    if (chattingActivity.isExternalStorageWritable())
+                                    if (chattingActivity.requestPermission(chattingActivity))
                                     {
-                                        File fileDir = chattingActivity.getFileStorageDir(chattingActivity.getMessageAndAnswer(
-                                                chattingActivity.getMessagesAndAnswersList().size()-2
-                                        ).getReceivedText());
 
-                                        File file = chattingActivity.GetDocxFile(fileDir, chattingActivity.previousQuestion);
+                                        //Сохранить документ во внешнем хранилище
+                                        if (chattingActivity.isExternalStorageWritable()) {
+                                            File fileDir = chattingActivity.getFileStorageDir(chattingActivity.getMessageAndAnswer(
+                                                    chattingActivity.getMessagesAndAnswersList().size() - 2
+                                            ).getReceivedText());
+
+                                            File file = chattingActivity.GetDocxFile(fileDir, chattingActivity.previousQuestion);
 
 
+                                            if (file.exists()) {
+                                                Toast.makeText(getContext(), "Файл успешно сохранён по пути: " + fileDir.toString(), Toast.LENGTH_LONG).show();
 
-                                        if (file.exists())
-                                        {
-                                            Toast.makeText(getContext(), "Файл успешно сохранён по пути: " + fileDir.toString(), Toast.LENGTH_LONG).show();
+                                            } else {
 
-                                        }
-                                        else
-                                        {
-
-                                            Toast.makeText(getContext(), "Произошла какая-то ошибка, попробуйте снова...", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getContext(), "Произошла какая-то ошибка, попробуйте снова...", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } else {
+                                            Toast.makeText(getContext(), "У приложения нет доступа" +
+                                                    " ко внешнему хранилищу, " +
+                                                    "сохранение договора невозможно", Toast.LENGTH_SHORT).show();
                                         }
                                     }
-                                    else
-                                    {
-                                        Toast.makeText(getContext(), "У приложения нет доступа" +
-                                                " ко внешнему хранилищу, " +
-                                                "сохранение договора невозможно", Toast.LENGTH_SHORT).show();
-                                    }
-
 
                                     AddMessageTask addMessageTask = new AddMessageTask(chattingActivity, chattingActivity.getPrevLastNodeModel());
                                     addMessageTask.execute();
@@ -165,6 +161,7 @@ public class OpenMenuFragment extends Fragment {
                                         || chattingActivity.getVariantObject(position).getVariantText().equals("Договор на оказание репетиторских услуг")
                                         || chattingActivity.getVariantObject(position).getVariantText().equals("Договор по созданию текстовых материалов")) {
                                     //Вывести шаблоны документов
+                                    chattingActivity.requestPermission(chattingActivity);
                                     if (chattingActivity.getVariantObject(position).getVariantText().equals("Шаблоны документов")) {
                                         List<String> answerList = new ArrayList<>();
                                             answerList.add("В данном разделе собраны шаблоны договоров для самозанятых в трёх различных сферах.");
@@ -226,6 +223,8 @@ public class OpenMenuFragment extends Fragment {
                                         MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE)
                                 );
                             }
+
+
 
 
                             //Выбрать раздел
