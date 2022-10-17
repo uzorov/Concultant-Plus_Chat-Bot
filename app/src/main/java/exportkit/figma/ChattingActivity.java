@@ -20,10 +20,14 @@
     import android.Manifest;
     import android.app.Activity;
     import android.content.Intent;
+    import android.content.pm.ActivityInfo;
     import android.content.pm.PackageManager;
     import android.content.res.AssetManager;
+    import android.content.res.Configuration;
     import android.os.Bundle;
     import android.os.Environment;
+    import android.os.Handler;
+    import android.os.Looper;
     import android.util.Log;
     import android.view.View;
     import android.view.WindowManager;
@@ -43,6 +47,8 @@
     import java.io.InputStream;
     import java.util.ArrayList;
     import java.util.List;
+    import java.util.concurrent.ExecutorService;
+    import java.util.concurrent.Executors;
 
     import exportkit.figma.database.InitDatabase;
     import exportkit.figma.database.NodeModel;
@@ -72,6 +78,8 @@
         //Фрагменты, представляющие меню с вариантами в открытом и закрытом состояниях
         OpenMenuFragment openMenuFragment;
         ClosedMenuFragment closedMenuFragment;
+
+      public static boolean isInternetAvailable;
 
         public void setPrevLastNodeModel(NodeModel prevLastNodeModel) {
             this.prevLastNodeModel = prevLastNodeModel;
@@ -118,11 +126,17 @@
 
 
         @Override
+        public void onConfigurationChanged(Configuration newConfig) {
+            super.onConfigurationChanged(newConfig);
+            //here you can handle orientation change
+        }
+
+        @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.chatting_activity);
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ChattingActivity.this, R.color.gray));
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
             openMenuFragment = new OpenMenuFragment(ChattingActivity.this);
             closedMenuFragment = new ClosedMenuFragment(ChattingActivity.this);
@@ -197,20 +211,17 @@
 
 
 //Вызываем метод, который загрузит все варианты и вопрос: "Что вас интересует?" -
-            initDatabase = new InitDatabase(ChattingActivity.this, internetIsConnected());
+
+            initDatabase = new InitDatabase(ChattingActivity.this, isInternetAvailable);
             initDatabase.readData("", "", MENU_PATH);
+
 
         }
 
         //Метод проверяет интернет соединение
-        public boolean internetIsConnected() {
-            try {
-                String command = "ping -c 1 google.com";
-                return (Runtime.getRuntime().exec(command).waitFor() == 0);
-            } catch (Exception e) {
-                return false;
-            }
-        }
+      //  public boolean internetIsConnected() {
+         // Перенесён в MainActivity
+       // }
 
         /* Checks if external storage is available for read and write */
         public boolean isExternalStorageWritable() {
@@ -242,7 +253,7 @@
                 previousQuestion = messageAndAnswer.getReceivedText();
             }
             messagesAdapter.notifyDataSetChanged();
-            chattingRecycleView.scrollToPosition(messagesAndAnswersList.size() - 1); // scroll to bottom
+            scrollDown();
         }
 
         public void clearVariants() {
@@ -263,10 +274,10 @@
             return variants.get(position);
         }
 
-        public void scrollDown() {
-            chattingRecycleView.scrollToPosition(messagesAndAnswersList.size() - 1);
-        }
 
+        public void scrollDown() {
+            chattingRecycleView.smoothScrollToPosition(messagesAndAnswersList.size() - 1);
+        }
 
         private static final String AUTHORITY = "exportkit.figma";
 

@@ -58,7 +58,7 @@ public class OpenMenuFragment extends Fragment {
 
     public OpenMenuFragment(ChattingActivity chattingActivity) {
         this.chattingActivity = chattingActivity;
-        initDatabase = new InitDatabase(chattingActivity, chattingActivity.internetIsConnected());
+        initDatabase = new InitDatabase(chattingActivity, ChattingActivity.isInternetAvailable);
     }
 
     public static OpenMenuFragment newInstance() {
@@ -192,11 +192,12 @@ public class OpenMenuFragment extends Fragment {
                                 } else if (chattingActivity.getVariantObject(position).getVariantText().equals("Обратная связь")) {
                                     //Вывести информацию об обратной связи - работает в режиме без интернета
                                     List<String> answerList = new ArrayList<>();
-                                    answerList.add("Связаться со мной можно, написав на почту: chat.bot.pomoshchnik.ivan@bk.ru");
+                                    answerList.add("Связаться со мной можно, написав на почту:  <a href=mailto:chat.bot.pomoshchnik.ivan@bk.ru?Subject=Новое%20Pписьмо>chat.bot.pomoshchnik.ivan@bk.ru</a>");
                                     answerList.add("Вы можете задать вопросы как по технической части бота, включая вопросы о возникающих ошибках" +
                                             ", так и по информации, присутствующей в боте");
                                     answerList.add("Также буду рад получить от вас общее мнение о продукте.");
                                     answerList.add("Спасибо, что общаетесь со мной!");
+
 
 
                                     List<String> variantList = new ArrayList<>();

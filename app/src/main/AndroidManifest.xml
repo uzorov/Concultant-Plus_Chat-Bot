@@ -16,6 +16,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
+            android:screenOrientation="portrait"
+            android:orientation="vertical"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -27,7 +29,9 @@
 
 
 
-        <activity android:name=".ChattingActivity" />
+        <activity android:name=".ChattingActivity"
+            android:screenOrientation="portrait"
+            android:orientation="vertical" />
 
         <provider
             android:name="LegacyCompatFileProvider"

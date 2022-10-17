@@ -29,7 +29,7 @@
             app:layout_constraintHeight_default="wrap"
             app:layout_constraintVertical_bias="0.0"
             app:layout_constraintHeight_max="300dp"
-
+            android:overScrollMode="never"
             android:layout_gravity="left"
             android:background="@drawable/rectangle_10_shape"
             android:layout_marginBottom="9dp"

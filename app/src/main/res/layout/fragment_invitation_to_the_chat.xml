@@ -39,20 +39,21 @@
 
         <View
             android:id="@+id/container"
-            android:layout_width="314dp"
-            android:layout_height="261dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="268dp"
+            android:layout_height="326dp"
+            android:layout_marginBottom="8dp"
             android:alpha="0.60000002384186"
             android:background="@drawable/container_shape"
             app:layout_constraintBottom_toTopOf="@+id/konsul_tantplyus_1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.163"
+            app:layout_constraintHorizontal_bias="0.202"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="288dp"
-            android:layout_height="wrap_content"
+            android:layout_width="254dp"
+            android:layout_height="311dp"
+            android:padding="5dp"
             android:text="@string/invit_bots_text"
             android:textColor="@color/black"
             android:textSize="20sp"

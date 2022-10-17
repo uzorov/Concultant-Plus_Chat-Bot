@@ -2,6 +2,9 @@ package exportkit.figma.showing_messages;
 
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -182,7 +185,17 @@ class LeftChatViewHolder extends RecyclerView.ViewHolder {
      * @param detailsText
      */
     public void setTexts(String chatText, String detailsText, String sender, boolean isFileAttached) {
-        chatBubbleTextView.setText(chatText);
+        //chatBubbleTextView.setText(chatText);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            chatBubbleTextView.setText(Html.fromHtml(chatText, Html.FROM_HTML_MODE_COMPACT));
+            chatBubbleTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        }
+        else
+        {
+            chatBubbleTextView.setText(Html.fromHtml(chatText));
+            chatBubbleTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        }
         detailsTextView.setText(detailsText);
         senderTextView.setText(sender);
 

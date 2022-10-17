@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import exportkit.figma.ChattingActivity;
 import exportkit.figma.R;
@@ -63,10 +64,22 @@ public class InvitationToTheChatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        TextView textView3 = requireActivity().findViewById(R.id.textView3);
         logoIcon = requireActivity().findViewById(R.id.konsul_tantplyus_1);
         if (logoIcon != null)
         {
             logoIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent goToChattingIntent = new Intent(getActivity(), ChattingActivity.class);
+                    startActivity(goToChattingIntent);
+                }
+            });
+        }
+
+        if (textView3 != null)
+        {
+            textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent goToChattingIntent = new Intent(getActivity(), ChattingActivity.class);

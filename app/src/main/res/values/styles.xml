@@ -3,8 +3,8 @@
 	<!-- android_large___1 styles -->
 
 	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorPrimary">@color/gray</item>
+		<item name="colorPrimaryDark">@color/gray</item>
 		<item name="colorAccent">@color/colorAccent</item>
 	</style>
 

@@ -25,4 +25,5 @@
 	<color name="rectangle_3_ek1_color">#9CB4CC</color>
 	<color name="rectangle_10_color">#F0EFF8</color>
 	<color name="ellipse_1_ek1_color">#19B84F</color>
+	<color name="gray" >#E4E4E4</color>
 </resources>
