@@ -33,6 +33,7 @@
     import android.view.WindowManager;
     import android.widget.LinearLayout;
 
+    import androidx.annotation.NonNull;
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.core.app.ActivityCompat;
     import androidx.core.content.ContextCompat;
@@ -79,7 +80,7 @@
         OpenMenuFragment openMenuFragment;
         ClosedMenuFragment closedMenuFragment;
 
-      public static boolean isInternetAvailable;
+        public static boolean isInternetAvailable;
 
         public void setPrevLastNodeModel(NodeModel prevLastNodeModel) {
             this.prevLastNodeModel = prevLastNodeModel;
@@ -174,6 +175,25 @@
             chattingRecycleView.setAdapter(messagesAdapter);
 
 
+            chattingRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+
+                    Log.d("scroll_debug", "dx: " + dx);
+                    Log.d("scroll_debug", "dy: " + dy);
+
+                    if (dy < 0) {
+                        FragmentTransaction fragmentTransaction2;
+                        fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction2.setReorderingAllowed(true);
+                        fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
+                        fragmentTransaction2.commit();
+                    }
+
+                }
+            });
+
             chattingRecycleView.addOnItemTouchListener(
                     new RecyclerItemClickListener(
                             this,
@@ -181,31 +201,13 @@
                             new RecyclerItemClickListener.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
-
                                     if (messagesAndAnswersList.get(position).thisNodeIsDocument()) {
-
                                         LoadPdfFile(messagesAndAnswersList.get(position).getReceivedText());
-
-                                    } else {
-                                        FragmentTransaction fragmentTransaction2;
-                                        fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                                        fragmentTransaction2.setReorderingAllowed(true);
-                                        fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
-                                        fragmentTransaction2.commit();
                                     }
-
                                 }
 
                                 @Override
                                 public void onLongItemClick(View view, int position) {
-
-                                    FragmentTransaction fragmentTransaction2;
-                                    fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                                    fragmentTransaction2.setReorderingAllowed(true);
-                                    fragmentTransaction2.replace(R.id.fragment_container_view_variants, closedMenuFragment, null);
-                                    fragmentTransaction2.commit();
-
-
                                 }
                             }));
 
@@ -219,9 +221,9 @@
         }
 
         //Метод проверяет интернет соединение
-      //  public boolean internetIsConnected() {
-         // Перенесён в MainActivity
-       // }
+        //  public boolean internetIsConnected() {
+        // Перенесён в MainActivity
+        // }
 
         /* Checks if external storage is available for read and write */
         public boolean isExternalStorageWritable() {
@@ -263,7 +265,8 @@
         public void addVariantToList(Variant variant) {
             variants.add(variant);
             openMenuFragment.notifyRecycler();
-
+            if (getMessagesAndAnswersList().size() > 4)
+            scrollDown();
         }
 
         public List<Variant> getVariants() {
@@ -276,7 +279,7 @@
 
 
         public void scrollDown() {
-            chattingRecycleView.smoothScrollToPosition(messagesAndAnswersList.size() - 1);
+            chattingRecycleView.smoothScrollToPosition(getMessagesAndAnswersList().size());
         }
 
         private static final String AUTHORITY = "exportkit.figma";
