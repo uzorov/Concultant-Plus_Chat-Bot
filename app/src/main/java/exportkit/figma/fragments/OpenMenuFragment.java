@@ -91,6 +91,7 @@ public class OpenMenuFragment extends Fragment {
         variantsAdapter = new VariantsAdapter(chattingActivity);
         variantsRecycleView.setAdapter(variantsAdapter);
 
+        chattingActivity.scrollDown();
 
         variantsRecycleView.addOnItemTouchListener(
                 new RecyclerItemClickListener(
@@ -99,10 +100,6 @@ public class OpenMenuFragment extends Fragment {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-
-
-
-
 
 
                                 if (
@@ -116,18 +113,12 @@ public class OpenMenuFragment extends Fragment {
                                             "",
                                             MENU_PATH);
 
-                                }
-
-                                else if (chattingActivity.getVariantObject(position).getVariantText().equals("Сохранить договор"))
-                                {
-                                    if (chattingActivity.requestPermission(chattingActivity))
-                                    {
+                                } else if (chattingActivity.getVariantObject(position).getVariantText().equals("Сохранить договор")) {
+                                    if (chattingActivity.requestPermission(chattingActivity)) {
 
                                         //Сохранить документ во внешнем хранилище
                                         if (chattingActivity.isExternalStorageWritable()) {
-                                            File fileDir = chattingActivity.getFileStorageDir(chattingActivity.getMessageAndAnswer(
-                                                    chattingActivity.getMessagesAndAnswersList().size() - 2
-                                            ).getReceivedText());
+                                            File fileDir = chattingActivity.getFileStorageDir("Договоры самозанятого");
 
                                             File file = chattingActivity.GetDocxFile(fileDir, chattingActivity.previousQuestion);
 
@@ -148,46 +139,52 @@ public class OpenMenuFragment extends Fragment {
 
                                     AddMessageTask addMessageTask = new AddMessageTask(chattingActivity, chattingActivity.getPrevLastNodeModel());
                                     addMessageTask.execute();
-                                }
-
-                                else if (chattingActivity.getVariantObject(position).getVariantText().equals("Назад"))
-                                {
+                                } else if (chattingActivity.getVariantObject(position).getVariantText().equals("Назад")) {
                                     //Вернуть предыдущий узел
                                     AddMessageTask addMessageTask = new AddMessageTask(chattingActivity, chattingActivity.getPrevLastNodeModel());
                                     addMessageTask.execute();
-                                }
-                                else if (chattingActivity.getVariantObject(position).getVariantText().equals("Шаблоны документов")
-                                        || chattingActivity.getVariantObject(position).getVariantText().equals("Договор аренды нежилого помещения")
-                                        || chattingActivity.getVariantObject(position).getVariantText().equals("Договор на оказание репетиторских услуг")
-                                        || chattingActivity.getVariantObject(position).getVariantText().equals("Договор по созданию текстовых материалов")) {
+                                } else if (chattingActivity.getVariantObject(position).getVariantText().equals("Шаблоны документов")
+                                        || chattingActivity.getVariantObject(position).getVariantText().equals("Хочу сдавать помещение в аренду")
+                                        || chattingActivity.getVariantObject(position).getVariantText().equals("Хочу оказывать услуги репетитора")
+                                        || chattingActivity.getVariantObject(position).getVariantText().equals("Хочу писать тексты на заказ")) {
                                     //Вывести шаблоны документов
                                     chattingActivity.requestPermission(chattingActivity);
                                     if (chattingActivity.getVariantObject(position).getVariantText().equals("Шаблоны документов")) {
                                         List<String> answerList = new ArrayList<>();
-                                            answerList.add("В данном разделе собраны шаблоны договоров для самозанятых в трёх различных сферах.");
-                                            answerList.add("Выберите интересующий Вас договор из списка ниже и нажмите на него для предпросмотра или скачайте," +
-                                                    " нажав соответствующую кнопку.");
-                                            answerList.add("Какой договор Вас интересует?");
+                                        answerList.add("В данном разделе собраны шаблоны договоров для самозанятых в трёх различных сферах.");
+                                        answerList.add("Что вы хотите делать в качестве самозанятого? ");
                                         List<String> variantList = new ArrayList<>();
-                                            variantList.add("Договор аренды нежилого помещения");
-                                            variantList.add("Договор на оказание репетиторских услуг");
-                                            variantList.add("Договор по созданию текстовых материалов");
-                                            variantList.add("Вернуться на главную страницу");
+                                        variantList.add("Хочу сдавать помещение в аренду");
+                                        variantList.add("Хочу писать тексты на заказ");
+                                        variantList.add("Хочу оказывать услуги репетитора");
+                                        variantList.add("Вернуться на главную страницу");
                                         NodeModel nodeModel = new NodeModel("", "", answerList, variantList);
                                         AddMessageTask addMessageTask = new AddMessageTask(chattingActivity, nodeModel);
-                                            addMessageTask.execute();
-                                    }
-                                       else {
-                                        List<String> answerList = new ArrayList<>();
-                                            answerList.add(chattingActivity.getVariantObject(position).getVariantText() + ".docx");
+                                        addMessageTask.execute();
+                                    } else {
+
                                         List<String> variantList = new ArrayList<>();
-                                            variantList.add("Сохранить договор");
-                                              variantList.add("Назад");
-                                            variantList.add("Вернуться на главную страницу");
+                                        variantList.add("Сохранить договор");
+                                        variantList.add("Назад");
+                                        variantList.add("Вернуться на главную страницу");
+                                        List<String> answerList = new ArrayList<>();
+                                        switch (chattingActivity.getVariantObject(position).getVariantText()) {
+                                            case "Хочу оказывать услуги репетитора":
+                                                answerList.add("Договор на оказание репетиторских услуг.docx");
+                                                break;
+                                            case "Хочу сдавать помещение в аренду":
+                                                answerList.add("Договор аренды нежилого помещения.docx");
+                                                break;
+                                            case "Хочу писать тексты на заказ":
+                                                answerList.add("Договор по созданию текстовых материалов.docx");
+                                                break;
+                                        }
+
+
                                         NodeModel nodeModel = new NodeModel("", "", answerList, variantList, true);
                                         AddMessageTask addMessageTask = new AddMessageTask(chattingActivity, nodeModel);
-                                            addMessageTask.execute();
-                                       }
+                                        addMessageTask.execute();
+                                    }
 
                                 } else if (chattingActivity.getVariantObject(position).getVariantText().equals("Обратная связь")) {
                                     //Вывести информацию об обратной связи - работает в режиме без интернета
@@ -197,7 +194,6 @@ public class OpenMenuFragment extends Fragment {
                                             ", так и по информации, присутствующей в боте");
                                     answerList.add("Также буду рад получить от вас общее мнение о продукте.");
                                     answerList.add("Спасибо, что общаетесь со мной!");
-
 
 
                                     List<String> variantList = new ArrayList<>();
@@ -224,8 +220,6 @@ public class OpenMenuFragment extends Fragment {
                                         MessageAndAnswer.RIGHT_CHAT_BUBBLE_LAYOUT_VIEW_TYPE)
                                 );
                             }
-
-
 
 
                             //Выбрать раздел

@@ -63,7 +63,7 @@
                         app:layout_constraintHeight_max="60dp"
                         app:layout_constraintWidth_max="60dp"
                         android:layout_gravity="center"
-                       android:layout_marginStart="5dp"
+                       android:layout_marginStart="8dp"
                         android:layout_marginEnd="-1dp"
                         android:layout_weight="1"
                         android:maxWidth="70dp"
