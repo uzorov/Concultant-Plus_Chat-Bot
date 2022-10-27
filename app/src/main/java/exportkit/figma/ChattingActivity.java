@@ -304,7 +304,7 @@
 
             File f = new File(getFilesDir(), fileName);
 
-            if (!f.exists()) {
+           // if (!f.exists()) {
                 AssetManager assets = getAssets();
 
                 try {
@@ -312,7 +312,7 @@
                 } catch (IOException e) {
                     Log.e("FileProvider", "Exception copying from assets", e);
                 }
-            }
+           // }
 
             Intent i =
                     new Intent(Intent.ACTION_VIEW,
@@ -321,7 +321,7 @@
             i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
             startActivity(i);
-            //finish();
+
 
 
         }
@@ -344,7 +344,7 @@
 
             File f = new File(fileDir, fileName);
 
-            if (!f.exists()) {
+           // if (!f.exists()) {
                 AssetManager assets = getAssets();
 
                 try {
@@ -352,7 +352,7 @@
                 } catch (IOException e) {
                     Log.e("FileProvider", "Exception copying from assets", e);
                 }
-            }
+            //}
 
             return f;
         }
